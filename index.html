@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spetsura Terminal</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/style.v5.css?v=9999">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <video autoplay muted loop id="bg-video">
+    <source src="/terminal.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div id="intro">
+    <div class="terminal">
+      <p class="terminal-line">
+        <span class="prompt">Spetsura@terminal:~$</span>
+        <span id="typed-js"></span>
+        <span id="done" style="display: none;">✓ Done</span>
+      </p>
+    </div>
+  </div>
+
+  <main id="site-content" style="display: none;">
+    <div class="terminal-box">
+      <p class="greeting-line">Hello and welcome! My name is Bohdan Kyianytsia, also known as <span class="highlighted">Spetsura</span></p>
+      <p class="subtext-line">This is my personal self-hosted website, which I built myself!</p>
+    </div>
+
+    <div class="terminal-box terminal-output hidden">
+      <p><span class="prompt">&gt;</span> I'm a versatile system administrator with experience managing UNIX-based systems (Ubuntu, CentOS) and Windows servers.</p>
+      <p><span class="prompt">&gt;</span> Skilled in network administration with MikroTik and Ubiquity UniFi.</p>
+      <p><span class="prompt">&gt;</span> Experienced in integrating new systems and scaling existing IT infrastructures.</p>
+      <p><span class="prompt">&gt;</span> Comfortable working with AWS, Oracle Cloud, Google Cloud, Cloudflare, and Nextcloud.</p>
+    </div>
+
+  <section id="about-me" class="terminal-box hidden">
+    <p><span class="prompt">Spetsura@terminal:~$</span> whoami</p>
+    <p>&gt; Bohdan Kyianytsia, System Administrator</p>
+    <p>
+      I am a system administrator with over 4 years of hands-on experience in building and supporting IT infrastructure. My interest in technology began back in 2007, when I got my first PC and started gaming — but what fascinated me more than the games was how everything worked under the hood.
+    </p>
+  </section>
+
+  <section id="work-experience" class="terminal-box hidden">
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="tab-1">NATUS VINCERE</button>
+      <button class="tab-btn" data-tab="tab-2">SHIMANOVSKY UKRAINIAN INSTITUTE OF STEEL CONSTRUCTION</button>
+      <button class="tab-btn" data-tab="tab-3">KYIVAVTOSHLYAHMIST</button>
+    </div>
+
+    <div class="tab-content active" id="tab-1">
+      <ul>
+        <li>Position: System Administrator (Sep 2020 – Present)</li>
+        <li>Maintained stable and secure IT infrastructure for over 200 devices.</li>
+        <li>Administered Windows Server, Linux (Ubuntu, CentOS) Servers, AWS Cloud Platform, Cloudflare CDN.</li>
+        <li>Managed wired and wireless networks built on MikroTik and UniFi systems.</li>
+        <li>Handled office IT operations, system integration, backups, automation, and incident response.</li>
+      </ul>
+    </div>
+
+    <div class="tab-content" id="tab-2">
+      <ul>
+        <li>Position: Structural Engineer (Aug 2018 – Sep 2020)</li>
+        <li>Performed technical inspections of bridges and special structures across Ukraine.</li>
+        <li>Prepared technical documentation, drawings, and engineering reports.</li>
+        <li>Collaborated with field teams and structural analysts during national infrastructure projects.</li>
+      </ul>
+    </div>
+
+    <div class="tab-content" id="tab-3">
+      <ul>
+        <li>Position: Civil Infrastructure Engineer (Sep 2017 – Aug 2018)</li>
+        <li>Inspected bridges and overpasses throughout the Kyiv area.</li>
+        <li>Introduced digital document management systems for inspection workflows.</li>
+        <li>Documented findings and maintenance plans according to municipal standards.</li>
+      </ul>
+    </div>
+  </section>
+  </main>
+
+  <div class="mac-dock hidden">
+    <a href="https://github.com/spetsura" target="_blank"><img src="/icons/github.png?v=3" alt="GitHub"></a>
+    <a href="https://www.linkedin.com/in/bohdan-kyianytsia/" target="_blank"><img src="/icons/linkedin.png?v=3" alt="LinkedIn"></a>
+    <a href="https://t.me/spetsura1" target="_blank"><img src="/icons/telegram.png?v=3" alt="Telegram"></a>
+    <a href="https://steamcommunity.com/id/spetsura" target="_blank"><img src="/icons/steam.png?v=3" alt="Steam"></a>
+    <a href="https://discord.com/users/spetsura" target="_blank"><img src="/icons/discord.png?v=3" alt="Discord"></a>
+    <a href="https://instagram.com/spetsura1337" target="_blank"><img src="/icons/instagram.png?v=3" alt="Instagram"></a>
+  </div>
+
+  <script>
+    const text = "Launching site...";
+    const typed = document.getElementById("typed-js");
+    const done = document.getElementById("done");
+    const intro = document.getElementById("intro");
+    const content = document.getElementById("site-content");
+
+    let i = 0;
+    function type() {
+      if (i < text.length) {
+        typed.textContent += text[i];
+        i++;
+        setTimeout(type, 80);
+      } else {
+        done.style.display = "inline-block";
+        setTimeout(() => {
+          intro.style.transition = "opacity 0.6s ease-out";
+          intro.style.opacity = "0";
+          setTimeout(() => {
+            intro.style.display = "none";
+            content.style.display = "block";
+
+            const terminal = document.querySelector('.terminal-output');
+            if (terminal) terminal.classList.remove('hidden');
+
+            const dock = document.querySelector('.mac-dock');
+            if (dock) dock.classList.remove('hidden');
+          }, 600);
+        }, 1000);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", type);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('hidden');
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      const targets = [
+        document.getElementById("about-me"),
+        document.getElementById("work-experience")
+      ];
+
+      targets.forEach(target => {
+        if (target) observer.observe(target);
+      });
+
+      const buttons = document.querySelectorAll(".tab-btn");
+      const contents = document.querySelectorAll(".tab-content");
+
+      buttons.forEach(button => {
+        button.addEventListener("click", () => {
+          buttons.forEach(btn => btn.classList.remove("active"));
+          contents.forEach(tab => tab.classList.remove("active"));
+
+          button.classList.add("active");
+          document.getElementById(button.dataset.tab).classList.add("active");
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
