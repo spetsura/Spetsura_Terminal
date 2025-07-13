@@ -19,15 +19,6 @@ This is my personal portfolio site, styled as a terminal interface. It reflects 
 - Oracle Cloud VPS + Nginx + systemd
 - Cloudflare for DNS and HTTPS
 
-## 📁 Project structure
-├── index.html # Main page
-├── resume.html # Resume page
-├── style.v5.css # Core stylesheet
-├── scripts/
-│ └── main.js # Tab switching, theme toggling
-└── assets/ # Icons, images, etc
-
-
 ## 🧠 Why I built this
 
 To demonstrate not just "tech experience", but how I work:
