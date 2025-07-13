@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spetsura Notes</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/style.v5.css?v=9999">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    details {
+      margin-top: 1.2rem;
+      border: 1px solid #3aff3a;
+      border-radius: 8px;
+      padding: 1rem;
+      background-color: #000;
+      box-shadow: 0 0 8px #3aff3a40;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: #3aff3a;
+    }
+    details p {
+      margin-top: 0.8rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+<a href="/" id="site-logo">
+  <img src="/img/logo.png" alt="Spetsura Logo">
+</a>
+
+<main id="site-content">
+  <section class="terminal-box notes-spacer">
+    <p><span class="prompt">Spetsura@terminal:~$</span> nano site_build_notes.txt</p>
+
+    <details>
+      <summary>[0] VPS provisioning on Oracle Cloud (Free Tier instance)</summary>
+      <p>- Registered an Oracle Cloud account and activated the Always Free Tier.</p>
+      <p>- Created a VM instance (Ubuntu 22.04), picking a region with available resources.</p>
+      <p>- Set up SSH access and updated the system (apt update && apt upgrade).</p>
+      <p>- Installed UFW, opened ports 22 (SSH), 80 and 443 (HTTP/HTTPS).</p>
+    </details>
+
+    <details>
+      <summary>[1] Domain registration, DNS setup, Cloudflare integration, HTTPS</summary>
+      <p>- Bought the domain spetsura.com via Dynadot.</p>
+      <p>- Connected it to Cloudflare (free tier) and configured DNS (A-record pointing to the VPS).</p>
+      <p>- Enabled proxying and generated an Origin SSL certificate via Cloudflare.</p>
+      <p>- Deployed the certificate to /etc/ssl/cloudflare/ and configured Nginx for HTTPS.</p>
+    </details>
+
+    <details>
+      <summary>[2] Ubuntu setup: Nginx, systemd, firewall config</summary>
+      <p>- Installed Nginx via apt, configured site block in /etc/nginx/sites-available/default.</p>
+      <p>- Added HTTP → HTTPS redirect, enabled gzip compression and basic caching headers.</p>
+      <p>- Enabled systemd service and ensured Nginx autostarts on boot.</p>
+      <p>- Configured UFW rules with `ufw allow 'Nginx Full'` and basic security settings.</p>
+    </details>
+
+    <details>
+      <summary>[3] Manual HTML/CSS structure, no frameworks, responsive layout</summary>
+      <p>- Built the entire HTML/CSS layout from scratch without using templates or frameworks.</p>
+      <p>- Designed the site in a terminal-style aesthetic, using only plain HTML and CSS.</p>
+      <p>- Implemented responsive design with media queries.</p>
+      <p>- Created a modular style.v5.css and linked it using cache-busting (?v=9999).</p>
+    </details>
+
+    <details>
+      <summary>[4] Scroll-triggered animations with IntersectionObserver</summary>
+      <p>- Used the IntersectionObserver API to animate sections on scroll.</p>
+      <p>- Elements with .hidden class are revealed by toggling .visible when they enter the viewport.</p>
+      <p>- Applied to sections like #about-me, #work-experience, and #certifications.</p>
+      <p>- All handled with plain JavaScript — no libraries involved.</p>
+    </details>
+
+    <details>
+      <summary>[5] Editing and deploying, cache busting, GitHub integration</summary>
+      <p>- I currently edit and deploy manually using WebStorm, pushing changes directly to the VPS over SFTP/SSH.</p>
+      <p>- Implemented basic cache busting with query strings (?v=9999) for styles and assets.</p>
+      <p>- I plan to eventually set up proper CI/CD using GitHub Actions or a similar tool to automate deployments, ensure version integrity, and streamline the publishing process.</p>
+    </details>
+
+    <details>
+      <summary>[6] Lessons learned and potential improvements</summary>
+      <p>- Proved to myself I can build and deploy a website from scratch without any frameworks.</p>
+      <p>- Improved my CSS and layout skills, especially around responsiveness.</p>
+      <p>- Worked with Cloudflare, SSL, and domain-level configurations.</p>
+      <p> Next steps I’m considering:</p>
+      <p>- Adding a /resume endpoint or .well-known metadata</p>
+      <p>- Including a sitemap and better SEO structure</p>
+      <p>- Eventually building a mini admin interface for dynamic content</p>
+    </details>
+
+    <p class="stack-space"><a href="/" class="cert-link">&larr; Back to main page</a></p>
+  </section>
+</main>
+
+</body>
+</html>

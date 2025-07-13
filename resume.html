@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bohdan Kyianytsia Resume</title>
+  <link rel="stylesheet" href="/style.v5.css?v=9999">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --highlight: #000000;
+      --font: 'Courier New', monospace;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      transition: all 0.3s ease;
+    }
+
+    .resume-container {
+      max-width: 1024px;
+      margin: 0 auto;
+    }
+
+    h1, h2, h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    .label {
+      color: var(--highlight);
+    }
+
+    .toggle-theme {
+      margin-bottom: 2rem;
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: 1px solid var(--highlight);
+      color: var(--highlight);
+      cursor: pointer;
+      font-family: var(--font);
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid var(--highlight);
+      text-decoration: none;
+      color: var(--highlight);
+      border-radius: 6px;
+    }
+
+    .resume-container {
+      text-align: left;
+    }
+
+    .resume-container h1,
+    .resume-container h2,
+    .resume-container h3,
+    .resume-container p {
+      text-align: left;
+      margin-left: 0;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      border-bottom: 1px dashed var(--highlight);
+      padding-bottom: 0.3rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .section h2 {
+      margin-top: 3rem;
+    }
+
+    .section hr {
+      margin: 0.5rem 0 1.2rem;
+    }
+
+    .resume-container p, .resume-container li {
+      font-size: 1rem;
+    }
+
+    .terminal-mode {
+      --bg: #000000;
+      --text: #ffffff;
+      --highlight: #ffffff;
+    }
+
+    a {
+      text-decoration: underline;
+      color: var(--highlight);
+    }
+
+    .top-controls {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .top-btn {
+      padding: 0.5rem 1rem;
+      width: 150px;
+      text-align: center;
+      display: inline-block;
+      border: 1px solid var(--highlight);
+      background: transparent;
+      color: var(--highlight);
+      font-family: var(--font);
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.8rem;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+      margin: 0.25rem;
+    }
+
+    .top-btn:hover {
+      background: var(--highlight);
+      color: var(--bg);
+    }
+
+    .last-updated {
+      font-size: 0.7rem;
+      opacity: 0.6;
+      margin-top: 0.5rem;
+      font-family: var(--font);
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="resume-container">
+  <div class="top-controls">
+    <a href="/" class="top-btn">Back to site</a>
+    <button class="top-btn toggle-theme" onclick="toggleTheme()">Switch Theme</button>
+    <a class="top-btn" href="/resume_Kyianytsia_Bohdan.pdf" target="_blank">Download PDF</a>
+  </div>
+
+    <h1>Bohdan Kyianytsia</h1>
+    <p class="label">System Administrator</p>
+
+    <div class="section">
+      <h2>Summary</h2>
+      <p>System administrator with 4+ years of hands-on experience supporting
+        Linux/Windows infrastructure, networks, and cloud platforms. Skilled in building
+        stable, well-documented systems under pressure — from office relocations to
+        blackouts during wartime. Combine automation, reliability, and attention to detail.
+        Technical background in engineering helps me think in systems, not fragments.</p>
+    </div>
+
+    <div class="section">
+      <h2>Core Skills</h2>
+      <ul>
+        <li><strong>Operating Systems:</strong> Ubuntu, Debian, CentOS, Windows Server, macOS</li>
+        <li><strong>Networking:</strong> MikroTik (MTCNA), Ubiquiti UniFi, VLANs, VPN, port forwarding, firewall configuration</li>
+        <li><strong>Infrastructure:</strong> Nginx, Apache, systemd, DNS, SSL, Cloudflare, Nextcloud</li>
+        <li><strong>Cloud & Self-Hosting:</strong> manual VPS deployments (Oracle Cloud, AWS, Google Cloud), static site architecture, backup automation strategies</li>
+        <li><strong>Scripting & Tools:</strong> Bash, UFW, crontab, basic automation routines</li>
+        <li><strong>Monitoring & Reliability:</strong> service uptime tracking, diagnostics and recovery</li>
+        <li><strong>Hardware:</strong> PC/workstation/server assembly, diagnostics, modular repairs, component level troubleshooting</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Experience</h2>
+      <h3>Natus Vincere (Sep 2020 – Present)</h3>
+      <ul>
+        <li>Supported and maintained IT infrastructure across multiple offices (~200 endpoints) in a high-demand esports environment</li>
+        <li>Led full IT operations for office relocation: deployed internal LAN/Wi-Fi stack using MikroTik and UniFi systems</li>
+        <li>Administered Windows Server and Linux-based services (Ubuntu, CentOS)</li>
+        <li>Delivered daily L1-L2 support across systems, resolving hardware/network/software incidents under tight timeframes</li>
+        <li>Configured and maintained cloud services (AWS, Cloudflare, Google Workspace)</li>
+        <li>Integrated new hardware and software systems, managed equipment lifecycle from procurement to deployment</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Key infrastructure projects</h2>
+      <ul>
+        <li>Planned and delivered full IT support for 50+ internal bootcamps and 20+ live events - including temporary networking, systems prep, redundancy planning, and on-call response - all with near-zero tech downtime </li>
+        <li>Implemented automated backup system for sensitive Windows Server data to SFTP storage (content under NDA) </li>
+        <li>Reduced downtime to zero during power outages by integrating EcoFlow battery systems for critical IT infrastructure - ensuring continuity even during missile strikes and emergency blackouts </li>
+        <li>Identified power fluctuation risks and initiated the installation of voltage stabilizers for non-UPS equipment </li>
+        <li>Participated in early-stage IT infrastructure planning for new office location </li>
+        <li>Collaborated with contractors on indoor LED display system deployment (Novastar); learned control stack and took over post-install maintenance; automated remote control of display systems using Wake-on-LAN and Anydesk; configured content delivery and playback via SuperNova auto-launch </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Hardware & Systems Insight</h2>
+      <ul>
+        <li>Confident in component-level diagnostics, PC and workstation assembly, modular repair and maintenance</li>
+        <li>Deep understanding of system stability, thermal considerations, and hardware related bottlenecks</li>
+        <li>Applied low-level hardware knowledge to design more reliable IT setups and predict failure points</li>
+        <li>Comfortable troubleshooting hardware issues in real-time during production and live events</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Technical Background - Engineering Foundations</h2>
+      <p>Before transitioning fully into IT, I worked in civil infrastructure, focusing on
+        inspections and reporting for bridges and special structures. During this period, I
+        regularly produced formal technical documentation, drawings, and structured
+        reports based on engineering assessments. This early experience helped develop my
+        attention to detail, accuracy, and ability to maintain long-term project documentation - skills I now apply directly in IT environments.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Education</h2>
+      <p><strong>National Transport University, Kyiv</strong></p>
+      <li>Master's Degree in Civil Engineering (2018-2019)</li>
+      <p>Graduated with honors</p>
+      <p>Specialized in structural systems and technical documentation</p></li>
+      <li>Bachelor's Degree in Construction Technology (2014-2018)
+    </div>
+
+    <div class="section">
+      <h2>Certifications</h2>
+      <li>MTCNA - MikroTik Certified Network Associate</li>
+      <li>Pre-MTCNA - MikroTik UA</li>
+    </div>
+
+    <div class="section">
+      <h2>Project: spetsura.com - Personal Self-Hosted Terminal-Style Website</h2>
+      <li>Designed and built a terminal-inspired personal website from scratch using plain HTML/CSS/JS</li>
+      <li>Self-managed on Oracle Cloud (Ubuntu VPS) with Nginx, secured via Cloudflare (DNS + SSL + firewall)</li>
+      <li>Implemented scroll-triggered animations via IntersectionObserver, fully responsive layout</li>
+      <li>Structured the entire project manually: versioning, cache busting, favicon optimization, minimal JS</li>
+      <li>Maintained directly via Git and WebStorm, deployed over SFTP</li>
+      <li>Page "/notes" documents the entire infrastructure and reasoning step-by-step (like a live README)</li>
+    </div>
+
+    <div class="section">
+      <h2>Contacts</h2>
+        <p>Site: <a href="https://spetsura.com" target="_blank">spetsura.com</a></p>
+        <p>GitHub: <a href="https://github.com/spetsura" target="_blank">github.com/spetsura</a></p>
+        <p>Email: admin@spetsura.com</p>
+    </div>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle("terminal-mode");
+    }
+
+    const body = document.body;
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('terminal-mode');
+    }
+
+    function toggleTheme() {
+      body.classList.toggle('terminal-mode');
+      if (body.classList.contains('terminal-mode')) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    }
+  </script>
+
+<div style="text-align: center; margin: 2.5rem 0 1rem;">
+  <a href="/resume_Kyianytsia_Bohdan.pdf" target="_blank" class="top-btn">Download PDF</a>
+  <div class="last-updated">Last updated: July 2025</div>
+</div>
+
+<footer style="text-align: center; margin-top: 3rem; font-size: 0.8rem; opacity: 0.6;">
+    <p>Built by Bohdan Kyianytsia &middot; 2025</p>
+  </footer>
+
+</body>
+</html>

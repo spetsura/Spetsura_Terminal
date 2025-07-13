@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="description" content="Terminal-style personal website of a system administrator. Skills, experience, and resume of Bohdan Kyianytsia.">
+  <meta charset="UTF-8">
+  <title>Spetsura Terminal</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/style.v5.css?v=9999">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<header class="mobile-header hidden">
+  <a href="/" id="mobile-logo">
+    <img src="/logo.png" alt="Spetsura Logo" />
+  </a>
+
+  <button class="burger-toggle" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<nav class="mobile-menu hidden">
+  <button class="menu-close" aria-label="Close menu">×</button>
+  <ul>
+    <li><a href="#about-me">01. About Me</a></li>
+    <li><a href="#work-experience">02. Experience</a></li>
+    <li><a href="#certifications">03. Certificates</a></li>
+    <li><a href="#project-notes">04. Notes</a></li>
+    <li><a href="#contact">05. Contact</a></li>
+    <li><a href="resume.html">06. Resume (CV)</a></li>
+  </ul>
+</nav>
+
+<a href="#" id="site-logo" onclick="handleLogoClick(event)">
+  <img src="/logo.png" alt="Spetsura Logo">
+</a>
+
+<video autoplay muted loop id="bg-video">
+  <source src="/terminal.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<div id="intro">
+  <div class="terminal">
+    <p class="terminal-line">
+      <span class="prompt">Spetsura@terminal:~$</span>
+      <span id="typed-js"></span>
+      <span id="done" style="display: none;">Done!</span>
+    </p>
+  </div>
+</div>
+
+<main id="site-content">
+  <div class="container">
+    <div id="hero-section">
+      <div class="terminal-box">
+        <p class="greeting-line">Hello and welcome! My name is Bohdan Kyianytsia, also known as <span class="highlighted">Spetsura</span></p>
+        <p class="subtext-line">This is my personal cloud-hosted website, which I built myself!</p>
+      </div>
+
+      <div class="nav-hover-zone"></div>
+      <nav class="top-nav">
+        <ul>
+          <li><a href="#about-me">01. About Me</a></li>
+          <li><a href="#work-experience">02. Work Experience</a></li>
+          <li><a href="#certifications">03. Certifications</a></li>
+          <li><a href="#project-notes">04. Project Notes</a></li>
+          <li><a href="#contact">05. Contact Me</a></li>
+          <li><a href="/resume" class="nav-link">06. Resume (CV)</a></li>
+        </ul>
+      </nav>
+
+      <div class="terminal-box terminal-output hidden">
+        <p><span class="prompt">&gt;</span> I'm a versatile system administrator with experience managing UNIX-based systems (Ubuntu, CentOS) and Windows servers.</p>
+        <p><span class="prompt">&gt;</span> Experienced in administering Windows, Ubuntu, and MacOS operating systems, providing L1 - L2 technical support to end users.</p>
+        <p><span class="prompt">&gt;</span> Diagnosing hardware issues, understanding PC internals, and performing hands - on component - level repairs.</p>
+        <p><span class="prompt">&gt;</span> Skilled in network administration with MikroTik and Ubiquity UniFi.</p>
+        <p><span class="prompt">&gt;</span> Integrating new systems and scaling existing IT infrastructures.</p>
+        <p><span class="prompt">&gt;</span> Comfortable working with AWS, Oracle Cloud, Google Cloud, Cloudflare, and Nextcloud.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <section id="about-me" class="terminal-box hidden section-spacer">
+      <p><span class="prompt">Spetsura@terminal:~$</span> whoami</p>
+      <p class="spaced"><span class="prompt">&gt;</span> Bohdan Kyianytsia, System Administrator</p>
+      <p class="stack-space">
+        Hello, my name is Bohdan Kyianytsia and I am a system administrator with over 4 years of hands-on experience in building and supporting IT infrastructure. My interest in technology began back in 2007, when I got my first PC and started gaming — but what fascinated me more than the games was how everything worked under the hood.
+      </p>
+      <div class="about-photo-wrapper">
+        <img src="/img/photo.JPG" alt="My Photo" class="about-photo">
+      </div>
+    </section>
+  </div>
+
+  <div class="container">
+    <section id="work-experience" class="terminal-box hidden section-spacer">
+      <p class="section-heading"><span class="prompt">Spetsura@terminal:~$</span> cd experience</p>
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="tab-1">NATUS VINCERE</button>
+        <button class="tab-btn" data-tab="tab-2">SHIMANOVSKY UKRAINIAN INSTITUTE OF STEEL CONSTRUCTION</button>
+        <button class="tab-btn" data-tab="tab-3">KYIVAVTOSHLYAHMIST</button>
+      </div>
+
+      <div class="tab-content active" id="tab-1">
+        <ul>
+          <p><span class="prompt">&gt;</span> Position: System Administrator (Sep 2020 – Present)</p>
+          <p><span class="prompt">&gt;</span> Maintained stable and secure IT infrastructure for over 200 devices.</p>
+          <p><span class="prompt">&gt;</span> Managed and supported Windows Server, Linux (Ubuntu, CentOS) Servers, AWS Cloud Platform, Cloudflare CDN.</p>
+          <p><span class="prompt">&gt;</span> Managed wired and wireless networks built on MikroTik and UniFi systems.</p>
+          <p><span class="prompt">&gt;</span> Handled office IT operations, system integration, backups, automation, and incident response.</p>
+        </ul>
+      </div>
+
+      <div class="tab-content" id="tab-2">
+        <ul>
+          <p><span class="prompt">&gt;</span> Position: Structural Engineer (Aug 2018 – Sep 2020)</p>
+          <p><span class="prompt">&gt;</span> Performed technical inspections of bridges and special structures across Ukraine.</p>
+          <p><span class="prompt">&gt;</span> Prepared technical documentation, drawings, and engineering reports.</p>
+          <p><span class="prompt">&gt;</span> Collaborated with field teams and structural analysts during national infrastructure projects.</p>
+        </ul>
+      </div>
+
+      <div class="tab-content" id="tab-3">
+        <ul>
+          <p><span class="prompt">&gt;</span> Position: Civil Infrastructure Engineer (Sep 2017 – Aug 2018)</p>
+          <p><span class="prompt">&gt;</span> Inspected bridges and overpasses throughout the Kyiv area.</p>
+          <p><span class="prompt">&gt;</span> Prepared technical documentation, drawings, and engineering reports.</p>
+          <p><span class="prompt">&gt;</span> Collaborated with field teams and structural analysts during national infrastructure projects.</p>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="container">
+    <section id="certifications" class="terminal-box hidden section-spacer">
+      <p><span class="prompt">Spetsura@terminal:~$</span> nano certs.txt</p>
+      <div class="cert-list">
+        <p><span class="prompt">&gt;</span> <a href="/certs/pre-mtcna.pdf" target="_blank" class="cert-link">Pre-MTCNA Course – MikroTik UA</a></p>
+        <p><span class="prompt">&gt;</span> <a href="/certs/mtcna.pdf" target="_blank" class="cert-link">MTCNA Certification – MikroTik UA</a></p>
+        <p><span class="prompt">&gt;</span> More coming soon...</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="container">
+    <section id="project-notes" class="terminal-box hidden section-spacer">
+      <p><span class="prompt">Spetsura@terminal:~$</span> cat project_notes.txt</p>
+      <p class="stack-space"><span class="prompt">&gt;</span> This website is a personal project I built entirely on my own to sharpen my backend skills and explore frontend development.
+        It runs on a self-managed cloud VPS (Oracle Cloud Free Tier). Managed and configured entirely by me.</p>
+      <p><span class="prompt">&gt;</span> Main stack:</p>
+      <ul>
+        <li><span class="prompt">[S0]</span> HTML, CSS, vanilla JavaScript</li>
+        <li><span class="prompt">[S1]</span> Ubuntu Server, Nginx, systemd</li>
+        <li><span class="prompt">[S2]</span> Cloudflare (DNS, HTTPS, Firewall)</li>
+        <li><span class="prompt">[S3]</span> GitHub (for version control)</li>
+      </ul>
+      <p><span class="prompt">&gt;</span> Key learning points:</p>
+      <ul>
+        <li><span class="prompt">[L0]</span> Gained hands-on experience with HTML & CSS fundamentals from scratch</li>
+        <li><span class="prompt">[L1]</span> Learned to structure, style, and align real content without relying on frameworks</li>
+        <li><span class="prompt">[L2]</span> Basic performance and caching practices</li>
+      </ul>
+      <p><span class="prompt">&gt;</span> Full breakdown: <a href="/notes" class="cert-link">spetsura.com/notes</a></p>
+    </section>
+  </div>
+
+  <div class="container">
+    <section id="contact" class="terminal-box hidden section-spacer">
+      <div class="terminal-line">
+        <span class="prompt-green">Spetsura@terminal:~$</span>
+        <span class="command-text">contact_me</span>
+      </div>
+      <form action="https://submit-form.com/OPFVN3V00" method="POST" class="contact-form">
+        <input type="hidden" name="_redirect" value="https://spetsura.com/thanks" />
+        <label for="name" class="green-text">[Enter your name]</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email" class="green-text">[Enter your email address]</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message" class="green-text">[Enter your message]</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <button type="submit">Send a message</button>
+      </form>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <div class="mac-dock hidden">
+      <a href="https://github.com/spetsura" target="_blank"><img src="/icons/github.png?v=3" alt="GitHub"></a>
+      <a href="https://www.linkedin.com/in/bohdan-kyianytsia/" target="_blank"><img src="/icons/linkedin.png?v=3" alt="LinkedIn"></a>
+      <a href="https://t.me/spetsura1" target="_blank"><img src="/icons/telegram.png?v=3" alt="Telegram"></a>
+      <a href="https://steamcommunity.com/id/spetsura" target="_blank"><img src="/icons/steam.png?v=3" alt="Steam"></a>
+      <a href="https://discord.com/users/spetsura" target="_blank"><img src="/icons/discord.png?v=3" alt="Discord"></a>
+      <a href="https://instagram.com/spetsura1337" target="_blank"><img src="/icons/instagram.png?v=3" alt="Instagram"></a>
+    </div>
+
+    <p>Built by Bohdan Kyianytsia, 2025</p>
+  </footer>
+
+</main>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const typed = document.getElementById("typed-js");
+    const done = document.getElementById("done");
+    const intro = document.getElementById("intro");
+    const content = document.getElementById("site-content");
+
+    content.style.display = "none";
+
+    const text = "Launching site...";
+    let i = 0;
+
+    function type() {
+      if (i < text.length) {
+        typed.textContent += text[i];
+        i++;
+        setTimeout(type, 80);
+      } else {
+        done.style.display = "inline-block";
+        setTimeout(() => {
+          intro.style.transition = "opacity 0.6s ease-out";
+          intro.style.opacity = "0";
+          setTimeout(() => {
+            intro.style.display = "none";
+            content.style.display = "block";
+
+            document.querySelector(".terminal-output")?.classList.remove("hidden");
+            document.querySelector(".mac-dock")?.classList.remove("hidden");
+            document.querySelector(".mobile-header")?.classList.remove("hidden");
+            document.querySelector(".mobile-menu")?.classList.remove("hidden");
+            document.getElementById("site-logo")?.classList.add("visible");
+            document.querySelector('.resume-button')?.classList.add('visible');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.remove("hidden");
+                  entry.target.classList.add("visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            }, { threshold: 0.2 });
+
+            const targets = [
+              document.getElementById("about-me"),
+              document.getElementById("work-experience"),
+              document.getElementById("certifications"),
+              document.getElementById("project-notes"),
+              document.getElementById("contact")
+            ];
+
+            targets.forEach(target => {
+              if (target) observer.observe(target);
+            });
+
+          }, 600);
+        }, 1000);
+      }
+    }
+
+    type();
+    let lastScroll = 0;
+    const nav = document.querySelector(".top-nav");
+
+    window.addEventListener("scroll", () => {
+      const currentScroll = window.scrollY;
+
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        nav.classList.add("nav-hidden");
+      } else {
+        nav.classList.remove("nav-hidden");
+      }
+
+      lastScroll = currentScroll;
+    });
+
+    const buttons = document.querySelectorAll(".tab-btn");
+    const contents = document.querySelectorAll(".tab-content");
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        buttons.forEach(btn => btn.classList.remove("active"));
+        contents.forEach(tab => tab.classList.remove("active"));
+        document.getElementById(button.dataset.tab)?.classList.add("active");
+        button.classList.add("active");
+      });
+    });
+
+    const burger = document.querySelector(".burger-toggle");
+    const menu = document.querySelector(".mobile-menu");
+    const closeBtn = document.querySelector(".menu-close");
+
+    burger.addEventListener('click', () => {
+      menu.classList.toggle('active');
+      burger.classList.toggle('open');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      menu.classList.remove('active');
+      burger.classList.remove('open');
+    });
+
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('active');
+        burger.classList.remove('open');
+      });
+    });
+
+    document.getElementById('mobile-logo')?.addEventListener('click', () => {
+      menu.classList.remove('active');
+      burger.classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
