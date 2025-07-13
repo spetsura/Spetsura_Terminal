@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>404 Not Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: monospace;
+      overflow-x: auto;
+    }
+
+    .error-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+      gap: 2rem;
+    }
+
+    .mobile-404 {
+      color: #3aff3a;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      line-height: 1;
+      display: none;
+    }
+
+    .mobile-404 pre {
+      font-size: clamp(8px, 3vw, 16px);
+      margin: 0;
+      white-space: pre;
+    }
+
+    .ascii-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .ascii-art {
+      font-family: 'Courier New', Courier, monospace;
+      color: #3aff3a;
+      font-size: clamp(6px, 1.2vw, 14px);
+      white-space: pre;
+      line-height: 1.1;
+      text-align: left;
+      display: inline-block;
+    }
+
+    .error-message {
+      font-family: monospace;
+      font-size: clamp(12px, 2vw, 16px);
+      color: #fff;
+      text-align: center;
+      line-height: 1.4;
+      max-width: 90%;
+    }
+
+    .error-message p {
+      margin: 0.5rem 0;
+    }
+
+    .error-message .prompt {
+      color: #3aff3a;
+      font-weight: bold;
+    }
+
+    .error-message .error-code {
+      color: #ff4444;
+    }
+
+    .error-message a {
+      color: #9effff;
+      text-decoration: underline;
+    }
+
+    .error-message a:hover {
+      color: #fff;
+    }
+
+    /* Адаптация для мобильных */
+    @media (max-width: 768px) {
+      .ascii-art {
+        font-size: clamp(4px, 2.5vw, 10px);
+      }
+
+      .ascii-container {
+        display: none;
+      }
+
+      .mobile-404 {
+        display: block;
+      }
+
+      .error-wrapper {
+        gap: 1rem;
+      }
+    }
+
+    /* Для очень маленьких экранов */
+    @media (max-width: 480px) {
+      .ascii-art {
+        font-size: clamp(3px, 3vw, 8px);
+      }
+
+      .error-wrapper {
+        padding: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="error-wrapper">
+  <div class="mobile-404">
+      <pre>
+       444444444       000000000            444444444
+      4::::::::4     00:::::::::00         4::::::::4
+     4:::::::::4   00:::::::::::::00      4:::::::::4
+    4::::44::::4  0:::::::000:::::::0    4::::44::::4
+   4::::4 4::::4  0::::::0   0::::::0   4::::4 4::::4
+  4::::4  4::::4  0:::::0     0:::::0  4::::4  4::::4
+ 4::::4   4::::4  0:::::0     0:::::0 4::::4   4::::4
+4::::444444::::4440:::::0 000 0:::::04::::444444::::444
+4::::::::::::::::40:::::0 000 0:::::04::::::::::::::::4
+4444444444:::::4440:::::0     0:::::04444444444:::::444
+          4::::4  0:::::0     0:::::0          4::::4
+          4::::4  0::::::0   0::::::0          4::::4
+          4::::4  0:::::::000:::::::0          4::::4
+        44::::::44 00:::::::::::::00         44::::::44
+        4::::::::4   00:::::::::00           4::::::::4
+        4444444444     000000000             4444444444
+      </pre>
+  </div>
+  <div class="ascii-container">
+      <pre class="ascii-art">PPPPPPPPPPPPPPPPP                                                                         444444444       000000000            444444444
+P::::::::::::::::P                                                                       4::::::::4     00:::::::::00         4::::::::4
+P::::::PPPPPP:::::P                                                                     4:::::::::4   00:::::::::::::00      4:::::::::4
+PP:::::P     P:::::P                                                                   4::::44::::4  0:::::::000:::::::0    4::::44::::4
+  P::::P     P:::::P  aaaaaaaaaaaaa      ggggggggg   ggggg    eeeeeeeeeeee            4::::4 4::::4  0::::::0   0::::::0   4::::4 4::::4
+  P::::P     P:::::P  a::::::::::::a    g:::::::::ggg::::g  ee::::::::::::ee         4::::4  4::::4  0:::::0     0:::::0  4::::4  4::::4
+  P::::PPPPPP:::::P   aaaaaaaaa:::::a  g:::::::::::::::::g e::::::eeeee:::::ee      4::::4   4::::4  0:::::0     0:::::0 4::::4   4::::4
+  P:::::::::::::PP             a::::a g::::::ggggg::::::gge::::::e     e:::::e     4::::444444::::4440:::::0 000 0:::::04::::444444::::444
+  P::::PPPPPPPPP        aaaaaaa:::::a g:::::g     g:::::g e:::::::eeeee::::::e     4::::::::::::::::40:::::0 000 0:::::04::::::::::::::::4
+  P::::P              aa::::::::::::a g:::::g     g:::::g e:::::::::::::::::e      4444444444:::::4440:::::0     0:::::04444444444:::::444
+  P::::P             a::::aaaa::::::a g:::::g     g:::::g e::::::eeeeeeeeeee                 4::::4  0:::::0     0:::::0          4::::4
+  P::::P            a::::a    a:::::a g::::::g    g:::::g e:::::::e                          4::::4  0::::::0   0::::::0          4::::4
+PP::::::PP          a::::a    a:::::a g:::::::ggggg:::::g e::::::::e                         4::::4  0:::::::000:::::::0          4::::4
+P::::::::P          a:::::aaaa::::::a  g::::::::::::::::g  e::::::::eeeeeeee               44::::::44 00:::::::::::::00         44::::::44
+P::::::::P           a::::::::::aa:::a  gg::::::::::::::g   ee:::::::::::::e               4::::::::4   00:::::::::00           4::::::::4
+PPPPPPPPPP            aaaaaaaaaaaaaaaa    gggggggg::::::g     eeeeeeeeeeeeee               4444444444     000000000             4444444444
+                                                  g:::::g
+                                      gggggg      g:::::g
+                                      g:::::gg   gg:::::g
+                                       g::::::ggg:::::::g
+                                        gg:::::::::::::g
+                                          ggg::::::ggg
+                                             gggggg</pre>
+  </div>
+
+  <div class="error-message">
+    <p><span class="prompt">&gt;</span> You're lost, just go <a href="/">home</a> </p>
+  </div>
+</div>
+</body>
+</html>
