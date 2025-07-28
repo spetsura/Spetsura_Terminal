@@ -2,7 +2,7 @@
 
 This is my personal portfolio site, styled as a terminal interface. It reflects my background, mindset, and attitude toward technology. Everything is handcrafted: from HTML/CSS to animations and layout logic.
 
-## 🔍 What's inside
+## What's inside
 
 - Terminal-like intro animation
 - `whoami` section — personal summary as a CLI command
@@ -11,7 +11,7 @@ This is my personal portfolio site, styled as a terminal interface. It reflects 
 - Light/dark theme support (/resume page)
 - Downloadable PDF resume via `/resume`
 
-## 🛠 Built with
+## Built with
 
 - Pure HTML, CSS, vanilla JS
 - WebStorm + SFTP for deployment
@@ -19,7 +19,7 @@ This is my personal portfolio site, styled as a terminal interface. It reflects 
 - Oracle Cloud VPS + Nginx + systemd
 - Cloudflare for DNS and HTTPS
 
-## 🧠 Why I built this
+## Why I built this
 
 To demonstrate not just "tech experience", but how I work:
 
@@ -27,10 +27,10 @@ To demonstrate not just "tech experience", but how I work:
 - No templates — built and deployed entirely by me
 - Full control over logic, layout, and hosting
 
-## 🔗 Live version
+## Live version
 
-👉 [spetsura.com](https://spetsura.com)
+[spetsura.com](https://spetsura.com)
 
-## 📄 License
+## License
 
 MIT — feel free to fork, learn, and remix.
