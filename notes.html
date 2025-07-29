@@ -77,19 +77,62 @@
     </details>
 
     <details>
-      <summary>[5] Editing and deploying, cache busting, GitHub integration</summary>
+      <summary>[5] Dynamic adaptation for mobile devices</summary>
+      <p>- Refactored mobile layout to support small screen sizes (tested on iPhone 12 Pro).</p>
+      <p>- Fixed scroll lock issue caused by intro animation + menu visibility.</p>
+      <p>- Introduced burger menu with animated transitions and proper open/close logic.</p>
+      <p>- Hid "About me" section on first screen — now appears on scroll with `slide-up` and `fade-in` animations.</p>
+      <p>- Verified adaptive behavior of interactive tabs and terminal UI on narrow viewports.</p>
+    </details>
+
+    <details>
+      <summary>[6] Added a /resume page</summary>
+      <p>- Created a new route `/resume` as a standalone page.</p>
+      <p>- Designed in light theme by default, with support for toggling to "terminal" (dark) mode.</p>
+      <p>- Populate it with structured professional resume and download button.</p>
+      <p></p>
+    </details>
+
+    <details>
+      <summary>[7] Security basics </summary>
+      <p>- Disabled root login over SSH: `PermitRootLogin no`</p>
+      <p>- Disabled password authentication: `PasswordAuthentication no`</p>
+      <p>- All SSH access now strictly over private key. SSH remains on port 22.</p>
+      <p>- No public login forms or admin panels exposed — no attack surface for bruteforce.</p>
+      <p>- Decided **not to install Fail2Ban** — no password auth = nothing to protect.</p>
+      <p>- Firewall layer already enforced via Cloudflare proxy.</p>
+      <p>- Hardened nginx config with essential security headers:
+        <li>X-Content-Type-Options: nosniff</li>
+        <li>X-Frame-Options: DENY</li>
+        <li>Referrer-Policy: no-referrer</li>
+        <li>Content-Security-Policy: default-src 'self'</li>
+        <li>Ensured no conflict with Cloudflare headers.</li>
+      </p>
+    </details>
+
+    <details>
+      <summary>[8] Server metrics via Netdata</summary>
+      <p>- Deployed real-time server monitoring using Netdata on a dedicated subdomain: `netdata.spetsura.com`</p>
+      <p>- Tracks core metrics: CPU, RAM, disk I/O, network traffic, system load, and active processes.</p>
+      <p>- Integrated Telegram alerts for critical conditions — I get notified instantly if something goes wrong.</p>
+      <p>- Traffic is proxied through Cloudflare to hide the server's origin IP.</p>
+      <p>- Direct access is restricted by IP allowlist — only trusted IPs can reach the interface.</p>
+      <p></p>
+    </details>
+
+    <details>
+      <summary>[9] Editing and deploying, cache busting, GitHub integration</summary>
       <p>- I currently edit and deploy manually using WebStorm, pushing changes directly to the VPS over SFTP/SSH.</p>
       <p>- Implemented basic cache busting with query strings (?v=9999) for styles and assets.</p>
       <p>- I plan to eventually set up proper CI/CD using GitHub Actions or a similar tool to automate deployments, ensure version integrity, and streamline the publishing process.</p>
     </details>
 
     <details>
-      <summary>[6] Lessons learned and potential improvements</summary>
+      <summary>[10] Lessons learned and potential improvements</summary>
       <p>- Proved to myself I can build and deploy a website from scratch without any frameworks.</p>
       <p>- Improved my CSS and layout skills, especially around responsiveness.</p>
       <p>- Worked with Cloudflare, SSL, and domain-level configurations.</p>
       <p> Next steps I’m considering:</p>
-      <p>- Adding a /resume endpoint or .well-known metadata</p>
       <p>- Including a sitemap and better SEO structure</p>
       <p>- Eventually building a mini admin interface for dynamic content</p>
     </details>
