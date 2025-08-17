@@ -2,7 +2,7 @@ name: CI/CD Prod
 
 on:
   push:
-    branches: [ "master" ]    
+    branches: [ "master" ]
   workflow_dispatch: {}
 
 jobs:
@@ -26,35 +26,26 @@ jobs:
           fi
           echo "Using source: $(cat $GITHUB_OUTPUT)"
 
-      - name: Package artifact
+      - name: Prepare artifact dir
         run: |
           set -euo pipefail
           SRC="${{ steps.detect.outputs.src }}"
-          echo "Packing from: $SRC"
-
+          rm -rf artifact
+          mkdir -p artifact
           if [ "$SRC" = "dist" ]; then
-            # пакуем содержимое dist/
-            tar -czf artifact.tar.gz -C dist .
+            rsync -a --delete "$SRC"/ artifact/
           else
-            tar \
-              --exclude=.git \
-              --exclude=.github \
-              --exclude=node_modules \
-              --exclude=artifact \
-              -czf artifact.tar.gz \
-              -C . .
+            rsync -a --delete . artifact/ \
+              --exclude .git --exclude .github --exclude node_modules --exclude artifact
           fi
-
-          echo "Artifact size:"
-          ls -lh artifact.tar.gz
-          echo "First files in archive:"
-          tar -tzf artifact.tar.gz | head -n 20
+          echo "Artifact content:"
+          ls -la artifact | head -n 50
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: site-artifact
-          path: artifact.tar.gz
+          path: artifact/
           if-no-files-found: error
 
   deploy:
@@ -67,6 +58,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: site-artifact
+          path: artifact
 
       - name: Deploy (atomic symlink)
         run: |
@@ -74,16 +66,13 @@ jobs:
           APP_DIR=/var/www/myapp
           TS=$(date +%Y%m%d%H%M%S)
           REL=$APP_DIR/releases/$TS
-
           mkdir -p "$REL"
-          tar -C "$REL" -xzf artifact.tar.gz
-
+          rsync -a --delete artifact/ "$REL"/
           [ -f "$APP_DIR/shared/.env" ] && ln -sfn "$APP_DIR/shared/.env" "$REL/.env" || true
           [ -d "$APP_DIR/shared/uploads" ] && ln -sfn "$APP_DIR/shared/uploads" "$REL/uploads" || true
-
           ln -sfn "$REL" "$APP_DIR/current"
 
-      - name: Reload nginx (limited sudo)
+      - name: Reload nginx
         run: |
           /usr/bin/sudo /usr/sbin/nginx -t
           /usr/bin/sudo /bin/systemctl reload nginx || /usr/bin/sudo /bin/systemctl restart myapp.service
