@@ -1,7 +1,8 @@
 name: CI/CD Prod
+
 on:
   push:
-    branches: [ "master" ]        
+    branches: [ "master" ]      
   workflow_dispatch: {}
 
 jobs:
@@ -10,17 +11,47 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Show workspace
+        run: |
+          pwd
+          ls -la
+
+      - name: Detect source dir
+        id: detect
+        run: |
+          if [ -d "dist" ] && [ -n "$(ls -A dist)" ]; then
+            echo "src=dist" >> $GITHUB_OUTPUT
+          else
+            echo "src=." >> $GITHUB_OUTPUT
+          fi
+          echo "Using source: $(cat $GITHUB_OUTPUT)"
+
+      - name: Package artifact
+        run: |
+          set -e
+          SRC="${{ steps.detect.outputs.src }}"
+          echo "Packing from: $SRC"
+          if [ "$SRC" = "dist" ]; then
+            tar -czf artifact.tar.gz -C dist .
+          else
+            tar -czf artifact.tar.gz -C . . \
+              --exclude .git --exclude .github --exclude node_modules --exclude artifact
+          fi
+          ls -lh artifact.tar.gz
+          tar -tzf artifact.tar.gz | head -n 20
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: site-artifact
           path: artifact.tar.gz
+          if-no-files-found: error   
 
   deploy:
     needs: build
     runs-on: [selfhosted, prod]
     environment:
-      name: production             
+      name: production
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
@@ -33,15 +64,17 @@ jobs:
           APP_DIR=/var/www/myapp
           TS=$(date +%Y%m%d%H%M%S)
           REL=$APP_DIR/releases/$TS
+
           mkdir -p "$REL"
           tar -C "$REL" -xzf artifact.tar.gz
 
+          # shared (опционально)
           [ -f "$APP_DIR/shared/.env" ] && ln -sfn "$APP_DIR/shared/.env" "$REL/.env" || true
           [ -d "$APP_DIR/shared/uploads" ] && ln -sfn "$APP_DIR/shared/uploads" "$REL/uploads" || true
 
           ln -sfn "$REL" "$APP_DIR/current"
 
-      - name: Reload services (limited sudo)
+      - name: Reload nginx (limited sudo)
         run: |
           /usr/bin/sudo /usr/sbin/nginx -t
           /usr/bin/sudo /bin/systemctl reload nginx || /usr/bin/sudo /bin/systemctl restart myapp.service
