@@ -6,7 +6,7 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  build:
+    build:
     runs-on: [selfhosted, prod]
     steps:
       - uses: actions/checkout@v4
@@ -28,16 +28,26 @@ jobs:
 
       - name: Package artifact
         run: |
-          set -e
+          set -euo pipefail
           SRC="${{ steps.detect.outputs.src }}"
           echo "Packing from: $SRC"
+
           if [ "$SRC" = "dist" ]; then
+            # Пакуем содержимое dist/
             tar -czf artifact.tar.gz -C dist .
           else
-            tar -czf artifact.tar.gz -C . . \
-              --exclude .git --exclude .github --exclude node_modules --exclude artifact
+            tar \
+              --exclude=.git \
+              --exclude=.github \
+              --exclude=node_modules \
+              --exclude=artifact \
+              -czf artifact.tar.gz \
+              -C . .
           fi
+
+          echo "Artifact size:"
           ls -lh artifact.tar.gz
+          echo "First files in archive:"
           tar -tzf artifact.tar.gz | head -n 20
 
       - name: Upload artifact
@@ -45,7 +55,7 @@ jobs:
         with:
           name: site-artifact
           path: artifact.tar.gz
-          if-no-files-found: error   
+          if-no-files-found: error
 
   deploy:
     needs: build
