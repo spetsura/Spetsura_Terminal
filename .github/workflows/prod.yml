@@ -1,0 +1,53 @@
+name: CI/CD Prod
+on:
+  push:
+    branches: [ "master" ]        
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: [selfhosted, prod]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-artifact
+          path: artifact.tar.gz
+
+  deploy:
+    needs: build
+    runs-on: [selfhosted, prod]
+    environment:
+      name: production             
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site-artifact
+
+      - name: Deploy (atomic symlink)
+        run: |
+          set -euo pipefail
+          APP_DIR=/var/www/myapp
+          TS=$(date +%Y%m%d%H%M%S)
+          REL=$APP_DIR/releases/$TS
+          mkdir -p "$REL"
+          tar -C "$REL" -xzf artifact.tar.gz
+
+          [ -f "$APP_DIR/shared/.env" ] && ln -sfn "$APP_DIR/shared/.env" "$REL/.env" || true
+          [ -d "$APP_DIR/shared/uploads" ] && ln -sfn "$APP_DIR/shared/uploads" "$REL/uploads" || true
+
+          ln -sfn "$REL" "$APP_DIR/current"
+
+      - name: Reload services (limited sudo)
+        run: |
+          /usr/bin/sudo /usr/sbin/nginx -t
+          /usr/bin/sudo /bin/systemctl reload nginx || /usr/bin/sudo /bin/systemctl restart myapp.service
+
+      - name: Keep last 3 releases
+        run: |
+          set -euo pipefail
+          cd /var/www/myapp/releases
+          ls -1tr | head -n -3 | xargs -r rm -rf

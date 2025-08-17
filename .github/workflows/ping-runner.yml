@@ -1,0 +1,18 @@
+name: Ping self-hosted runner
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [ "master" ]
+
+jobs:
+  ping:
+    runs-on: [selfhosted, prod]
+    steps:
+      - name: Show runner info
+        run: |
+          echo "Runner: $RUNNER_NAME"
+          echo "Labels: $RUNNER_OS $RUNNER_ARCH $RUNNER_TEMP"
+          whoami && hostname && pwd
+      - name: Touch test release dir
+        run: |
+          mkdir -p /var/www/myapp/releases/TEST && sudo ls -l /var/www/myapp/releases
