@@ -2,11 +2,11 @@ name: CI/CD Prod
 
 on:
   push:
-    branches: [ "master" ]      
+    branches: [ "master" ]    
   workflow_dispatch: {}
 
 jobs:
-    build:
+  build:
     runs-on: [selfhosted, prod]
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
           echo "Packing from: $SRC"
 
           if [ "$SRC" = "dist" ]; then
-            # Пакуем содержимое dist/
+            # пакуем содержимое dist/
             tar -czf artifact.tar.gz -C dist .
           else
             tar \
