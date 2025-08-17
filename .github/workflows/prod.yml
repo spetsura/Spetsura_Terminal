@@ -1,0 +1,46 @@
+name: CI/CD Prod
+
+on:
+  push:
+    branches: [ "main" ]   # that's my prod branch
+
+jobs:
+  build-and-deploy:
+    runs-on: [selfhosted, prod]   
+    environment:
+      name: production
+      # Settings → Environments → production for manual approve
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy (atomic symlink)
+        run: |
+          set -euo pipefail
+          APP_DIR=/var/www/myapp
+          TS=$(date +%Y%m%d%H%M%S)
+          REL=$APP_DIR/releases/$TS
+          mkdir -p "$REL"
+
+          if [ -d "dist" ]; then
+            rsync -a --delete dist/ "$REL"/
+          else
+            rsync -a --delete . "$REL"/ --exclude .git --exclude node_modules --exclude .github
+          fi
+
+          [ -f "$APP_DIR/shared/.env" ] && ln -sfn "$APP_DIR/shared/.env" "$REL/.env" || true
+          [ -d "$APP_DIR/shared/uploads" ] && ln -sfn "$APP_DIR/shared/uploads" "$REL/uploads" || true
+
+          ln -sfn "$REL" "$APP_DIR/current"
+
+          # nginx reload if needed 
+          if systemctl is-active --quiet myapp.service; then
+            sudo systemctl reload myapp.service || sudo systemctl restart myapp.service
+          elif systemctl is-active --quiet nginx; then
+            sudo nginx -t && sudo systemctl reload nginx
+          fi
+
+          # rotation for 3 releases only
+          cd "$APP_DIR/releases"
+          ls -1tr | head -n -3 | xargs -r rm -rf
