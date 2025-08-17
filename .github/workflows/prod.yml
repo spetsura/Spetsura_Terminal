@@ -1,19 +1,36 @@
 name: CI/CD Prod
-
 on:
   push:
-    branches: [ "main" ]   # that's my prod branch
+    branches: [ "main" ]  
+  workflow_dispatch: {}
 
 jobs:
-  build-and-deploy:
-    runs-on: [selfhosted, prod]   
+  build:
+    runs-on: [selfhosted, prod]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Archive artifact
+        run: |
+          mkdir -p artifact
+          if [ -d "dist" ]; then cp -r dist/* artifact/; else cp -r . artifact/; fi
+          tar -C artifact -czf artifact.tar.gz .
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-artifact
+          path: artifact.tar.gz
+
+  deploy:
+    needs: build
+    runs-on: [selfhosted, prod]
     environment:
       name: production
-      # Settings → Environments → production for manual approve
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site-artifact
 
       - name: Deploy (atomic symlink)
         run: |
@@ -22,25 +39,19 @@ jobs:
           TS=$(date +%Y%m%d%H%M%S)
           REL=$APP_DIR/releases/$TS
           mkdir -p "$REL"
-
-          if [ -d "dist" ]; then
-            rsync -a --delete dist/ "$REL"/
-          else
-            rsync -a --delete . "$REL"/ --exclude .git --exclude node_modules --exclude .github
-          fi
+          tar -C "$REL" -xzf artifact.tar.gz
 
           [ -f "$APP_DIR/shared/.env" ] && ln -sfn "$APP_DIR/shared/.env" "$REL/.env" || true
           [ -d "$APP_DIR/shared/uploads" ] && ln -sfn "$APP_DIR/shared/uploads" "$REL/uploads" || true
 
           ln -sfn "$REL" "$APP_DIR/current"
 
-          # nginx reload if needed 
-          if systemctl is-active --quiet myapp.service; then
-            sudo systemctl reload myapp.service || sudo systemctl restart myapp.service
-          elif systemctl is-active --quiet nginx; then
-            sudo nginx -t && sudo systemctl reload nginx
-          fi
+      - name: Reload services (limited sudo)
+        run: |
+          sudo nginx -t
+          sudo systemctl reload nginx || sudo systemctl restart myapp.service
 
-          # rotation for 3 releases only
-          cd "$APP_DIR/releases"
+      - name: Keep last 3 releases
+        run: |
+          cd /var/www/myapp/releases
           ls -1tr | head -n -3 | xargs -r rm -rf
