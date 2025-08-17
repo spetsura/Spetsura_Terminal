@@ -68,7 +68,6 @@ jobs:
           mkdir -p "$REL"
           tar -C "$REL" -xzf artifact.tar.gz
 
-          # shared (опционально)
           [ -f "$APP_DIR/shared/.env" ] && ln -sfn "$APP_DIR/shared/.env" "$REL/.env" || true
           [ -d "$APP_DIR/shared/uploads" ] && ln -sfn "$APP_DIR/shared/uploads" "$REL/uploads" || true
 
