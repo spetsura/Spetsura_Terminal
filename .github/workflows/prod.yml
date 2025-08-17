@@ -1,7 +1,7 @@
 name: CI/CD Prod
 on:
   push:
-    branches: [ "master" ]  
+    branches: [ "master" ]        
   workflow_dispatch: {}
 
 jobs:
@@ -10,11 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Archive artifact
-        run: |
-          mkdir -p artifact
-          if [ -d "dist" ]; then cp -r dist/* artifact/; else cp -r . artifact/; fi
-          tar -C artifact -czf artifact.tar.gz .
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -25,7 +20,7 @@ jobs:
     needs: build
     runs-on: [selfhosted, prod]
     environment:
-      name: production
+      name: production             
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
@@ -48,10 +43,11 @@ jobs:
 
       - name: Reload services (limited sudo)
         run: |
-          sudo nginx -t
-          sudo systemctl reload nginx || sudo systemctl restart myapp.service
+          /usr/bin/sudo /usr/sbin/nginx -t
+          /usr/bin/sudo /bin/systemctl reload nginx || /usr/bin/sudo /bin/systemctl restart myapp.service
 
       - name: Keep last 3 releases
         run: |
+          set -euo pipefail
           cd /var/www/myapp/releases
           ls -1tr | head -n -3 | xargs -r rm -rf
