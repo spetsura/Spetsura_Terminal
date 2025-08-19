@@ -943,9 +943,7 @@ html{scroll-behavior: smooth;}
     color: #ffffff;
   }
 
-  #work-experience .terminal-box p,
-  #work-experience .terminal-box li {
+  .terminal-box.terminal-output p {
     margin: 0.35rem 0;
     line-height: 1.35;
   }
-
