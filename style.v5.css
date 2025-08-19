@@ -944,6 +944,6 @@ html{scroll-behavior: smooth;}
   }
 
   .terminal-box.terminal-output p {
-    margin: 0.35rem 0;
-    line-height: 1.35;
+    margin: 0.35rem 0; !important;
+    line-height: 1.35; !important;
   }
