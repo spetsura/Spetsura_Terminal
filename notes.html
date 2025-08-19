@@ -121,10 +121,10 @@
     </details>
 
     <details>
-      <summary>[9] Editing and deploying, cache busting, GitHub integration</summary>
-      <p>- I currently edit and deploy manually using WebStorm, pushing changes directly to the VPS over SFTP/SSH.</p>
-      <p>- Implemented basic cache busting with query strings (?v=9999) for styles and assets.</p>
-      <p>- I plan to eventually set up proper CI/CD using GitHub Actions or a similar tool to automate deployments, ensure version integrity, and streamline the publishing process.</p>
+      <summary>[9] Editing and deploying, GitHub integration</summary>
+      <p>- At first, I was editing files directly on the server through the terminal, manually creating and modifying HTML, CSS, and JS.</p>
+      <p>- As the configs and codebase started to grow, I switched to using WebStorm. At this stage I worked locally and uploaded changes straight to the VPS over SFTP/SSH. It was more convenient, but still required a lot of manual steps and had potential risks.</p>
+      <p>- Eventually, I set up a proper CI/CD pipeline with GitHub Actions and a self-hosted runner. The pipeline now builds the project, packages the artifact, deploys it into a separate releases directory, and updates an atomic symlink. There is an approval step before production deployment, plus a retention of the last few releases, which makes rollback possible.</p>
     </details>
 
     <details>
@@ -132,6 +132,7 @@
       <p>- Proved to myself I can build and deploy a website from scratch without any frameworks.</p>
       <p>- Improved my CSS and layout skills, especially around responsiveness.</p>
       <p>- Worked with Cloudflare, SSL, and domain-level configurations.</p>
+      <p>- Set up a proper CI/CD pipeline with GitHub Actions to automate deployments, reduce manual steps, and enable rollbacks.</p>
       <p> Next steps I’m considering:</p>
       <p>- Including a sitemap and better SEO structure</p>
       <p>- Eventually building a mini admin interface for dynamic content</p>
