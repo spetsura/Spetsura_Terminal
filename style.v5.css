@@ -781,19 +781,22 @@ html{scroll-behavior: smooth;}
 .contact-form button:hover{background: #3aff3a;
   color: #000;}
 
-@media (max-width: 768px){.mac-dock {
-  position: static !important;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2rem;
-  transform: none !important;
-  left: auto !important;
-  right: auto !important;
-  bottom: auto !important;}
+@media (max-width: 768px) {
+  .mac-dock {
+    position: static !important;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+    transform: none !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
 
-  .site-footer{margin-top: 4rem;
+  .site-footer {
+    margin-top: 4rem;
     padding-bottom: 3rem;
     text-align: center;
     color: #3aff3a;
@@ -803,14 +806,18 @@ html{scroll-behavior: smooth;}
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;}
+    gap: 1.5rem;
+  }
 
-  @media (max-width: 768px){.site-footer {
-    font-size: 0.75rem;
-    padding-bottom: 4rem;
-    gap: 1.2rem;}
+  @media (max-width: 768px) {
+    .site-footer {
+      font-size: 0.75rem;
+      padding-bottom: 4rem;
+      gap: 1.2rem;
+    }
 
-    .mac-dock{position: static !important;
+    .mac-dock {
+      position: static !important;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -819,19 +826,23 @@ html{scroll-behavior: smooth;}
       left: auto !important;
       right: auto !important;
       bottom: auto !important;
-      margin-top: 1rem;}
+      margin-top: 1rem;
+    }
 
   }
 
-  .tab-buttons{display: flex;
+  .tab-buttons {
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
     margin-top: 1rem;
-    margin-bottom: 1rem;}
+    margin-bottom: 1rem;
+  }
 
-  .tab-btn{flex: 1 1 auto;
+  .tab-btn {
+    flex: 1 1 auto;
     min-width: 180px;
     text-align: center;
     padding: 0.8rem 1rem;
@@ -843,69 +854,106 @@ html{scroll-behavior: smooth;}
     border-radius: 12px;
     box-shadow: 0 0 6px #3aff3a;
     transition: background 0.3s, color 0.3s;
-    white-space: normal; /* перенос строк */}
+    white-space: normal; /* перенос строк */
+  }
 
-  .tab-btn.active{background-color: #3aff3a;
-    color: black;}
+  .tab-btn.active {
+    background-color: #3aff3a;
+    color: black;
+  }
 
-  @media (max-width: 600px){.tab-buttons {
-    flex-direction: column;
-    align-items: stretch;}
+  @media (max-width: 600px) {
+    .tab-buttons {
+      flex-direction: column;
+      align-items: stretch;
+    }
 
-    .tab-btn{min-width: unset;
+    .tab-btn {
+      min-width: unset;
       width: 100%;
-      font-size: 0.9rem;}
+      font-size: 0.9rem;
+    }
 
   }
 
-  .tab-content{margin-top: 1.5rem;}
+  .tab-content {
+    margin-top: 1.5rem;
+  }
 
-  .position-title{font-family: 'Courier New', monospace;
+  .position-title {
+    font-family: 'Courier New', monospace;
     color: #3aff3a;
     font-size: 1rem;
     margin-bottom: 1rem;
-    text-align: left;}
-
-  .tab-content{opacity: 0;
-    transition: opacity 0.3s ease;
-    display: none;}
-
-  .tab-content.active{display: block;
-    opacity: 1;}
-
-  a{color: var(--highlight);
-    text-decoration: underline;}
-
-  a:hover{opacity: 0.8;}
-
-  @media (max-width: 480px){body {
-    padding: 1rem;
-    font-size: 0.95rem;}
-
-    h1{font-size: 1.4rem;}
-
-    .toggle-theme,
-    .download-btn{width: 100%;
-      text-align: center;}
+    text-align: left;
   }
 
-  @media screen and (max-width: 420px){body {
-    font-size: 15px;}
+  .tab-content {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: none;
+  }
 
-    .terminal-box{padding: 1.6rem 1.2rem;}
+  .tab-content.active {
+    display: block;
+    opacity: 1;
+  }
 
-    .menu a{font-size: 0.9rem;
-      padding: 0.5rem 1rem;}
+  a {
+    color: var(--highlight);
+    text-decoration: underline;
+  }
 
-    .mac-dock{right: 10px;
-      gap: 10px;}
+  a:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 1rem;
+      font-size: 0.95rem;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+    }
+
+    .toggle-theme,
+    .download-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 420px) {
+    body {
+      font-size: 15px;
+    }
+
+    .terminal-box {
+      padding: 1.6rem 1.2rem;
+    }
+
+    .menu a {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .mac-dock {
+      right: 10px;
+      gap: 10px;
+    }
 
   }
 
   .greeting-line,
-  .subtext-line{font-size: 1.1rem;}
+  .subtext-line {
+    font-size: 1.1rem;
+  }
 
-  .terminal-box{font-size: 1rem;}
+  .terminal-box {
+    font-size: 1rem;
+  }
 
   @media screen and (max-width: 430px) {
     .terminal-box {
@@ -947,3 +995,4 @@ html{scroll-behavior: smooth;}
     margin: 0.35rem 0 !important;
     line-height: 1.35 !important;
   }
+}
