@@ -327,7 +327,7 @@ body{font-family: monospace;
 
 .terminal-box p,
 .terminal-box ul,
-.terminal-box li{margin-top: 1rem;
+.terminal-box li{margin-top: 0.5rem;
   line-height: 1;}
 
 #project-notes ul{list-style: none;
