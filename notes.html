@@ -128,51 +128,22 @@
     </details>
 
     <details class="notes-section" open>
-      <summary>Everyday Backups (restic via SFTP)</summary>
+      <summary>[10] Everyday Backups (restic via SFTP)</summary>
+
+      <p><strong>Goal:</strong> be able to roll back in minutes even if deploy goes wrong or GitHub/CI is down.</p>
 
       <ul>
-        <li><strong>Why:</strong> hedge against bad deploys/edits, disk failure on prod, or GitHub/CI outage. I must be able to restore without rebuilding.</li>
-
-        <li><strong>What I already had:</strong>
-          <ul>
-            <li>Local working copy on my PC (WebStorm).</li>
-            <li>GitHub repo with sources.</li>
-            <li>3 rotating releases on the prod server (ready-to-serve build artifacts).</li>
-          </ul>
+        <li><strong>Stack now:</strong> local working copy (WebStorm) → GitHub repo (sources) → 3 rotating prod releases → off-site restic repo over SFTP (20 encrypted snapshots).</li>
+        <li><strong>Schedule:</strong> nightly at <code>00:00</code>, incremental with dedup + encryption; SSH access is key-only; retention <code>keep-last 20</code>.</li>
+        <li><strong>What I back up:</strong> <code>/var/www/&lt;site&gt;/releases</code>, <code>/etc/nginx</code>, <code>/etc/letsencrypt</code>, <code>/etc/systemd/system</code>, deploy SSH keys and <code>.env</code>.</li>
+        <li><strong>What I skip:</strong> sources and <code>node_modules</code> (sources live in GitHub; deps are rebuildable).</li>
+        <li><strong>Quick restore drill:</strong>
+          <code>restic restore latest --target /tmp/restore --include /etc/nginx/nginx.conf</code> →
+          <code>diff -q /etc/nginx/nginx.conf /tmp/restore/etc/nginx/nginx.conf</code> = <em>OK</em>.
         </li>
-
-        <li><strong>New:</strong> an <strong>off-site</strong> restic repository on a separate SFTP host — <strong>20 encrypted snapshots</strong>, automatically rotated.</li>
-
-        <li><strong>How it works now:</strong>
-          <ul>
-            <li>Nightly at <code>00:00</code> restic creates an incremental snapshot over SFTP.</li>
-            <li>I back up only what matters:
-              <ul>
-                <li><code>/var/www/&lt;site&gt;/releases</code></li>
-                <li><code>/etc/nginx</code></li>
-                <li><code>/etc/letsencrypt</code></li>
-                <li><code>/etc/systemd/system</code></li>
-                <li>SSH keys and <code>.env</code> files for deploy users</li>
-              </ul>
-            </li>
-            <li>I <em>don’t</em> back up sources or <code>node_modules</code> (sources live in GitHub; deps can be rebuilt).</li>
-            <li>The repo is <strong>encrypted</strong> (needs <code>RESTIC_PASSWORD</code>); SSH access is key-only.</li>
-          </ul>
-        </li>
-
-        <li><strong>Retention policy:</strong> <code>keep-last 20</code> (can switch to daily/weekly/monthly if needed).</li>
-
-        <li><strong>Quick restore drill (spot-check):</strong></li>
+        <li><strong>Bottom line:</strong> four safety nets in place: Local → GitHub → 3 prod releases → off-site restic snapshots ×20.</li>
       </ul>
-
-      <pre><code># pull a file from the latest snapshot
-restic restore latest --target /tmp/restore-test --include /etc/nginx/nginx.conf
-# compare with the live file
-diff -q /etc/nginx/nginx.conf /tmp/restore-test/etc/nginx/nginx.conf && echo "OK"</code></pre>
-
-      <p><strong>Bottom line:</strong> four safety nets now — Local → GitHub → 3 prod releases → Off-site 20× restic snapshots.</p>
     </details>
-
 
     <details>
       <summary>[11] Lessons learned and potential improvements</summary>
