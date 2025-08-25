@@ -131,7 +131,7 @@
       <summary>[10] Everyday Backups (restic via SFTP)</summary>
       <p>- Goal: be able to roll back in minutes even if deploy goes wrong or GitHub/CI is down.</p>
       <p>- Stack now: local working copy (WebStorm) → GitHub repo (sources) → 3 rotating prod releases → off-site restic repo over SFTP (20 encrypted snapshots).</p>
-      <p>- Schedule:nightly at <code>00:00</code>, incremental with dedup + encryption; SSH access is key-only; retention <code>keep-last 20</code>.</p>
+      <p>- Schedule: nightly at <code>00:00</code>, incremental with dedup + encryption; SSH access is key-only; retention <code>keep-last 20</code>.</p>
       <p>- What I back up: <code>/var/www/&lt;site&gt;/releases</code>, <code>/etc/nginx</code>, <code>/etc/letsencrypt</code>, <code>/etc/systemd/system</code>, deploy SSH keys and <code>.env</code>.</p>
       <p>- What I skip: sources and <code>node_modules</code> (sources live in GitHub; deps are rebuildable).</p>
       <p>- Quick restore drill:
