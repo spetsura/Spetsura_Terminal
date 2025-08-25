@@ -132,17 +132,14 @@
 
       <p> Goal: be able to roll back in minutes even if deploy goes wrong or GitHub/CI is down.</p>
 
-      <ul>
-        <li><strong>Stack now:</strong> local working copy (WebStorm) → GitHub repo (sources) → 3 rotating prod releases → off-site restic repo over SFTP (20 encrypted snapshots).</li>
-        <li><strong>Schedule:</strong> nightly at <code>00:00</code>, incremental with dedup + encryption; SSH access is key-only; retention <code>keep-last 20</code>.</li>
-        <li><strong>What I back up:</strong> <code>/var/www/&lt;site&gt;/releases</code>, <code>/etc/nginx</code>, <code>/etc/letsencrypt</code>, <code>/etc/systemd/system</code>, deploy SSH keys and <code>.env</code>.</li>
-        <li><strong>What I skip:</strong> sources and <code>node_modules</code> (sources live in GitHub; deps are rebuildable).</li>
-        <li><strong>Quick restore drill:</strong>
-          <code>restic restore latest --target /tmp/restore --include /etc/nginx/nginx.conf</code> →
-          <code>diff -q /etc/nginx/nginx.conf /tmp/restore/etc/nginx/nginx.conf</code> = <em>OK</em>.
-        </li>
-        <li><strong>Bottom line:</strong> four safety nets in place: Local → GitHub → 3 prod releases → off-site restic snapshots ×20.</li>
-      </ul>
+      <p> Stack now: local working copy (WebStorm) → GitHub repo (sources) → 3 rotating prod releases → off-site restic repo over SFTP (20 encrypted snapshots).</p>
+      <p> Schedule:nightly at <code>00:00</code>, incremental with dedup + encryption; SSH access is key-only; retention <code>keep-last 20</code>.</p>
+      <p> What I back up: <code>/var/www/&lt;site&gt;/releases</code>, <code>/etc/nginx</code>, <code>/etc/letsencrypt</code>, <code>/etc/systemd/system</code>, deploy SSH keys and <code>.env</code>.</p>
+      <p> What I skip: sources and <code>node_modules</code> (sources live in GitHub; deps are rebuildable).</p>
+      <p> Quick restore drill:
+      <code>restic restore latest --target /tmp/restore --include /etc/nginx/nginx.conf</code> →
+      <code>diff -q /etc/nginx/nginx.conf /tmp/restore/etc/nginx/nginx.conf</code> = <em>OK</em>.
+      Bottom line:</strong> four safety nets in place: Local → GitHub → 3 prod releases → off-site restic snapshots ×20.</p>
     </details>
 
     <details>
