@@ -127,10 +127,10 @@
       <p>- Eventually, I set up a proper CI/CD pipeline with GitHub Actions and a self-hosted runner. The pipeline now builds the project, packages the artifact, deploys it into a separate releases directory, and updates an atomic symlink. There is an approval step before production deployment, plus a retention of the last few releases, which makes rollback possible.</p>
     </details>
 
-    <details class="notes-section" open>
+    <details>
       <summary>[10] Everyday Backups (restic via SFTP)</summary>
 
-      <p><strong>Goal:</strong> be able to roll back in minutes even if deploy goes wrong or GitHub/CI is down.</p>
+      <p> Goal: be able to roll back in minutes even if deploy goes wrong or GitHub/CI is down.</p>
 
       <ul>
         <li><strong>Stack now:</strong> local working copy (WebStorm) → GitHub repo (sources) → 3 rotating prod releases → off-site restic repo over SFTP (20 encrypted snapshots).</li>
