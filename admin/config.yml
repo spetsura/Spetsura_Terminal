@@ -1,0 +1,22 @@
+backend:
+  name: github
+  repo: spetsura/Spetsura_Terminal
+  branch: master
+  base_url: https://spetsura.com
+  auth_endpoint: /api/cms/auth
+media_folder: "content/images"
+public_folder: "/content/images"
+publish_mode: editorial_workflow
+collections:
+  - name: "pages"
+    label: "Pages"
+    folder: "content/pages"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Tags", name: "tags", widget: "list", default: ["notes"]}
+      - {label: "Body", name: "body", widget: "markdown"}
