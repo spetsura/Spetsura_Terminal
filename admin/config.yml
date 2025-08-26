@@ -4,9 +4,11 @@ backend:
   branch: master
   base_url: https://spetsura.com
   auth_endpoint: /api/cms/auth
+  
 media_folder: "content/images"
 public_folder: "/content/images"
 publish_mode: editorial_workflow
+
 collections:
   - name: "pages"
     label: "Pages"
