@@ -2,7 +2,7 @@ backend:
   name: github
   repo: spetsura/Spetsura_Terminal
   branch: master
-  base_url: https://spetsura.com
+  base_url: https://admin.spetsura.com
   auth_endpoint: /api/cms/auth
   
 media_folder: "content/images"
