@@ -63,13 +63,21 @@ jobs:
       - name: Deploy (atomic symlink)
         run: |
           set -euo pipefail
+          unmask 022
+          
           APP_DIR=/var/www/myapp
           TS=$(date +%Y%m%d%H%M%S)
           REL=$APP_DIR/releases/$TS
+          
+          mkdir -p "$APP_DIR/releases" "$APP_DIR/shared" "$APP_DIR/shared/uploads"
+
+          
           mkdir -p "$REL"
           rsync -a --delete artifact/ "$REL"/
+          
           [ -f "$APP_DIR/shared/.env" ] && ln -sfn "$APP_DIR/shared/.env" "$REL/.env" || true
           [ -d "$APP_DIR/shared/uploads" ] && ln -sfn "$APP_DIR/shared/uploads" "$REL/uploads" || true
+          
           ln -sfn "$REL" "$APP_DIR/current"
 
       - name: Reload nginx
@@ -79,6 +87,7 @@ jobs:
 
       - name: Keep last 3 releases
         run: |
-          set -euo pipefail
-          cd /var/www/myapp/releases
-          ls -1tr | head -n -3 | xargs -r rm -rf
+         set -euo pipefail
+         APP_DIR=/var/www/myapp
+         cd "$APP_DIR/releases"
+         ls -1dt */ | tail -n +4 | xargs -r rm -rf --
