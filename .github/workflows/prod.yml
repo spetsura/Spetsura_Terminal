@@ -63,7 +63,6 @@ jobs:
       - name: Deploy (atomic symlink)
         run: |
           set -euo pipefail
-          unmask 022
           
           APP_DIR=/var/www/myapp
           TS=$(date +%Y%m%d%H%M%S)
