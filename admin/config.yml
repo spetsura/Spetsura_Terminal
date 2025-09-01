@@ -7,18 +7,25 @@ backend:
   
 media_folder: "content/images"
 public_folder: "/content/images"
+
 publish_mode: editorial_workflow
 
 collections:
-  - name: "pages"
-    label: "Pages"
-    folder: "content/pages"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Tags", name: "tags", widget: "list", default: ["notes"]}
-      - {label: "Body", name: "body", widget: "markdown"}
+  - name: "static-pages"
+    label: "Static Pages"
+    files:
+      - file: "content/notes.md"
+        label: "Notes"
+        name: "notes"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - file: "content/resume.md"
+        label: "Resume"
+        name: "resume"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Body", name: "body", widget: "markdown" }
