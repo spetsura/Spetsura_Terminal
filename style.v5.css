@@ -996,11 +996,3 @@ html{scroll-behavior: smooth;}
     line-height: 1.4;
   }
 }
-
-#resume-content h1, #resume-content h2 { margin:.6rem 0 .4rem }
-#resume-content p { margin:.4rem 0; line-height:1.6 }
-#resume-content ul, #resume-content ol { margin:.4rem 0 .4rem 1.2rem }
-#resume-content strong { font-weight:700 }
-#resume-content em { font-style:italic }
-#resume-content a { text-decoration: none; border-bottom:1px dotted #3aff3a }
-#resume-content code { padding:0 .2rem; background:#0b0b0b; border:1px solid #3aff3a40; border-radius:4px }
