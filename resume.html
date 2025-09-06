@@ -143,6 +143,31 @@
       font-family: var(--font);
     }
 
+    /* НОВЫЕ СТИЛИ НИЖЕ, СТАРЫЕ ВЫШЕ! */
+    #resume-content h2,
+    #resume-content h3 {
+      margin: 1.2rem 0 .6rem;
+      padding-bottom: .35rem;
+      position: relative;
+    }
+
+    #resume-content h2::after,
+    #resume-content h3::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 1px;
+      background: #3aff3a40;               /* неоновая зелёная линия с прозрачностью */
+      box-shadow: 0 0 6px #3aff3a40;        /* лёгкое свечение */
+    }
+
+    /* чуть плотнее списки/параграфы после заголовков */
+    #resume-content h2 + p,
+    #resume-content h3 + p,
+    #resume-content h3 + ul { margin-top: .4rem; }
+
+    #resume-content p { line-height: 1.6; }
+    #resume-content ul { margin: .5rem 0 .6rem 1.2rem; }
   </style>
 </head>
 <body>
@@ -154,27 +179,15 @@
     <a class="top-btn" href="/resume_Kyianytsia_Bohdan.pdf" target="_blank">Download PDF</a>
   </div>
 
-  <div id="resume-content"></div>
+  <div id="resume-content" class="resume-md"></div>
 
   <script>
-    function toggleTheme() {
-      document.body.classList.toggle("terminal-mode");
-    }
-
-    const body = document.body;
-
-    if (localStorage.getItem('theme') === 'dark') {
-      body.classList.add('terminal-mode');
-    }
-
-    function toggleTheme() {
-      body.classList.toggle('terminal-mode');
-      if (body.classList.contains('terminal-mode')) {
-        localStorage.setItem('theme', 'dark');
-      } else {
-        localStorage.setItem('theme', 'light');
+      const body = document.body;
+      if (localStorage.getItem('theme') === 'dark') body.classList.add('terminal-mode');
+      function toggleTheme() {
+        body.classList.toggle('terminal-mode');
+        localStorage.setItem('theme', body.classList.contains('terminal-mode') ? 'dark' : 'light');
       }
-    }
   </script>
 
   <script src="/js/marked.min.js"></script>
