@@ -1,7 +1,3 @@
----
-title: Powered by Decap CMS since 6.9.2025
-description: ""
----
 ## \[0] VPS provisioning on Oracle Cloud (Free Tier instance)
 
 * Registered an Oracle Cloud account and activated the Always Free Tier.

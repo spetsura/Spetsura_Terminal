@@ -18,14 +18,10 @@ collections:
         label: "Notes"
         name: "notes"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text", required: false }
           - { label: "Body", name: "body", widget: "markdown" }
 
       - file: "content/resume.md"
         label: "Resume"
         name: "resume"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text", required: false }
           - { label: "Body", name: "body", widget: "markdown" }
