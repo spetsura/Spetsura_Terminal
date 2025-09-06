@@ -996,3 +996,27 @@ html{scroll-behavior: smooth;}
     line-height: 1.4;
   }
 }
+
+/* === Resume page overrides === */
+.resume-md h2,
+.resume-md h3 {
+  margin: 1.25rem 0 .75rem;
+  padding-bottom: .35rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  border-bottom: 1px dotted rgba(122,255,122,.45); /* та самая зелёная пунктирная линия */
+  box-shadow: 0 1px 0 rgba(58,255,58,.10);        /* лёгкое свечение */
+}
+
+.resume-md p      { margin: .45rem 0; line-height: 1.6; }
+.resume-md ul     { margin: .5rem 0 .7rem 1.2rem; list-style: disc; }
+.resume-md li+li  { margin-top: .15rem; }
+.resume-md strong { font-weight: 700; }
+.resume-md em     { font-style: italic; }
+
+.resume-md a {
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(122,255,122,.45);
+}
+.resume-md h2 a,
+.resume-md h3 a { text-decoration: none; border: 0; }
