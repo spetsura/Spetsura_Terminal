@@ -36,124 +36,31 @@
   <section class="terminal-box notes-spacer">
     <p><span class="prompt">Spetsura@terminal:~$</span> nano site_build_notes.txt</p>
 
-    <details>
-      <summary>[0] VPS provisioning on Oracle Cloud (Free Tier instance)</summary>
-      <p>- Registered an Oracle Cloud account and activated the Always Free Tier.</p>
-      <p>- Created a VM instance (Ubuntu 22.04), picking a region with available resources.</p>
-      <p>- Set up SSH access and updated the system (apt update && apt upgrade).</p>
-      <p>- Installed UFW, opened ports 22 (SSH), 80 and 443 (HTTP/HTTPS).</p>
-    </details>
-
-    <details>
-      <summary>[1] Domain registration, DNS setup, Cloudflare integration, HTTPS</summary>
-      <p>- Bought the domain spetsura.com via Dynadot.</p>
-      <p>- Connected it to Cloudflare (free tier) and configured DNS (A-record pointing to the VPS).</p>
-      <p>- Enabled proxying and generated an Origin SSL certificate via Cloudflare.</p>
-      <p>- Deployed the certificate to /etc/ssl/cloudflare/ and configured Nginx for HTTPS.</p>
-    </details>
-
-    <details>
-      <summary>[2] Ubuntu setup: Nginx, systemd, firewall config</summary>
-      <p>- Installed Nginx via apt, configured site block in /etc/nginx/sites-available/default.</p>
-      <p>- Added HTTP → HTTPS redirect, enabled gzip compression and basic caching headers.</p>
-      <p>- Enabled systemd service and ensured Nginx autostarts on boot.</p>
-      <p>- Configured UFW rules with `ufw allow 'Nginx Full'` and basic security settings.</p>
-    </details>
-
-    <details>
-      <summary>[3] Manual HTML/CSS structure, no frameworks, responsive layout</summary>
-      <p>- Built the entire HTML/CSS layout from scratch without using templates or frameworks.</p>
-      <p>- Designed the site in a terminal-style aesthetic, using only plain HTML and CSS.</p>
-      <p>- Implemented responsive design with media queries.</p>
-      <p>- Created a modular style.v5.css and linked it using cache-busting (?v=9999).</p>
-    </details>
-
-    <details>
-      <summary>[4] Scroll-triggered animations with IntersectionObserver</summary>
-      <p>- Used the IntersectionObserver API to animate sections on scroll.</p>
-      <p>- Elements with .hidden class are revealed by toggling .visible when they enter the viewport.</p>
-      <p>- Applied to sections like #about-me, #work-experience, and #certifications.</p>
-      <p>- All handled with plain JavaScript — no libraries involved.</p>
-    </details>
-
-    <details>
-      <summary>[5] Dynamic adaptation for mobile devices</summary>
-      <p>- Refactored mobile layout to support small screen sizes (tested on iPhone 12 Pro).</p>
-      <p>- Fixed scroll lock issue caused by intro animation + menu visibility.</p>
-      <p>- Introduced burger menu with animated transitions and proper open/close logic.</p>
-      <p>- Hid "About me" section on first screen — now appears on scroll with `slide-up` and `fade-in` animations.</p>
-      <p>- Verified adaptive behavior of interactive tabs and terminal UI on narrow viewports.</p>
-    </details>
-
-    <details>
-      <summary>[6] Added a /resume page</summary>
-      <p>- Created a new route `/resume` as a standalone page.</p>
-      <p>- Designed in light theme by default, with support for toggling to "terminal" (dark) mode.</p>
-      <p>- Populate it with structured professional resume and download button.</p>
-      <p></p>
-    </details>
-
-    <details>
-      <summary>[7] Security basics </summary>
-      <p>- Disabled root login over SSH: `PermitRootLogin no`</p>
-      <p>- Disabled password authentication: `PasswordAuthentication no`</p>
-      <p>- All SSH access now strictly over private key. SSH remains on port 22.</p>
-      <p>- No public login forms or admin panels exposed — no attack surface for bruteforce.</p>
-      <p>- Decided **not to install Fail2Ban** — no password auth = nothing to protect.</p>
-      <p>- Firewall layer already enforced via Cloudflare proxy.</p>
-      <p>- Hardened nginx config with essential security headers:
-        <li>X-Content-Type-Options: nosniff</li>
-        <li>X-Frame-Options: DENY</li>
-        <li>Referrer-Policy: no-referrer</li>
-        <li>Content-Security-Policy: default-src 'self'</li>
-        <li>Ensured no conflict with Cloudflare headers.</li>
-      </p>
-    </details>
-
-    <details>
-      <summary>[8] Server metrics via Netdata</summary>
-      <p>- Deployed real-time server monitoring using Netdata on a dedicated subdomain: `netdata.spetsura.com`</p>
-      <p>- Tracks core metrics: CPU, RAM, disk I/O, network traffic, system load, and active processes.</p>
-      <p>- Integrated Telegram alerts for critical conditions — I get notified instantly if something goes wrong.</p>
-      <p>- Traffic is proxied through Cloudflare to hide the server's origin IP.</p>
-      <p>- Direct access is restricted by IP allowlist — only trusted IPs can reach the interface.</p>
-      <p></p>
-    </details>
-
-    <details>
-      <summary>[9] Editing and deploying, GitHub integration</summary>
-      <p>- At first, I was editing files directly on the server through the terminal, manually creating and modifying HTML, CSS, and JS.</p>
-      <p>- As the configs and codebase started to grow, I switched to using WebStorm. At this stage I worked locally and uploaded changes straight to the VPS over SFTP/SSH. It was more convenient, but still required a lot of manual steps and had potential risks.</p>
-      <p>- Eventually, I set up a proper CI/CD pipeline with GitHub Actions and a self-hosted runner. The pipeline now builds the project, packages the artifact, deploys it into a separate releases directory, and updates an atomic symlink. There is an approval step before production deployment, plus a retention of the last few releases, which makes rollback possible.</p>
-    </details>
-
-    <details>
-      <summary>[10] Everyday Backups (restic via SFTP)</summary>
-      <p>- Goal: be able to roll back in minutes even if deploy goes wrong or GitHub/CI is down.</p>
-      <p>- Stack now: local working copy (WebStorm) → GitHub repo (sources) → 3 rotating prod releases → off-site restic repo over SFTP (20 encrypted snapshots).</p>
-      <p>- Schedule: nightly at <code>00:00</code>, incremental with dedup + encryption; SSH access is key-only; retention <code>keep-last 20</code>.</p>
-      <p>- What I back up: <code>/var/www/&lt;site&gt;/releases</code>, <code>/etc/nginx</code>, <code>/etc/letsencrypt</code>, <code>/etc/systemd/system</code>, deploy SSH keys and <code>.env</code>.</p>
-      <p>- What I skip: sources and <code>node_modules</code> (sources live in GitHub; deps are rebuildable).</p>
-      <p>- Quick restore drill:
-      <code>restic restore latest --target /tmp/restore --include /etc/nginx/nginx.conf</code> →
-      <code>diff -q /etc/nginx/nginx.conf /tmp/restore/etc/nginx/nginx.conf</code> = <em>OK</em>.</p>
-      <p>- Bottom line:</strong> four safety nets in place: Local → GitHub → 3 prod releases → off-site restic snapshots ×20.</p>
-    </details>
-
-    <details>
-      <summary>[11] Lessons learned and potential improvements</summary>
-      <p>- Proved to myself I can build and deploy a website from scratch without any frameworks.</p>
-      <p>- Improved my CSS and layout skills, especially around responsiveness.</p>
-      <p>- Worked with Cloudflare, SSL, and domain-level configurations.</p>
-      <p>- Set up a proper CI/CD pipeline with GitHub Actions to automate deployments, reduce manual steps, and enable rollbacks.</p>
-      <p> Next steps I’m considering:</p>
-      <p>- Including a sitemap and better SEO structure</p>
-      <p>- Eventually building a mini admin interface for dynamic content</p>
-    </details>
+    <div id="notes-content"></div>
 
     <p class="stack-space"><a href="/" class="cert-link">&larr; Back to main page</a></p>
   </section>
 </main>
+
+<script src="/js/marked.min.js"></script>
+<script>
+  (async () => {
+    const el = document.getElementById('notes-content');
+    if (!el) return;
+
+    const resp = await fetch('/content/notes.md', { cache: 'no-store' });
+    if (!resp.ok) {
+      el.textContent = 'Failed to load notes.md (' + resp.status + ')';
+      return;
+    }
+    const md = await resp.text();
+    el.innerHTML = marked.parse(md);
+  })().catch(err => {
+    console.error(err);
+    const el = document.getElementById('notes-content');
+    if (el) el.textContent = 'Error rendering notes.';
+  });
+</script>
 
 </body>
 </html>
