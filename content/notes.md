@@ -104,3 +104,8 @@
 
   * Add a sitemap and better SEO structure.
   * Eventually build a mini admin interface for dynamic content.
+
+
+
+
+  \Built by Bohdan Kyianytsia · 2025
