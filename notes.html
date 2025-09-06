@@ -45,16 +45,45 @@
 <script src="/js/marked.min.js"></script>
 <script>
   (async () => {
-    const el = document.getElementById('notes-content');
-    if (!el) return;
+    const root = document.getElementById('notes-content');
+    if (!root) return;
 
     const resp = await fetch('/content/notes.md', { cache: 'no-store' });
-    if (!resp.ok) {
-      el.textContent = 'Failed to load notes.md (' + resp.status + ')';
-      return;
-    }
+    if (!resp.ok) { root.textContent = 'Failed to load notes.md (' + resp.status + ')'; return; }
     const md = await resp.text();
-    el.innerHTML = marked.parse(md);
+
+    root.innerHTML = marked.parse(md);
+
+    const children = Array.from(root.childNodes);
+    const result = document.createDocumentFragment();
+    let i = 0;
+
+    while (i < children.length) {
+      const node = children[i];
+
+      if (node.nodeType === 1 && node.tagName === 'H2') {
+        const details = document.createElement('details');
+        const summary = document.createElement('summary');
+        summary.textContent = node.textContent.trim();
+        details.appendChild(summary);
+
+        const bodyWrap = document.createElement('div');
+        i++;
+        while (i < children.length && !(children[i].nodeType === 1 && children[i].tagName === 'H2')) {
+          bodyWrap.appendChild(children[i]);
+          i++;
+        }
+        details.appendChild(bodyWrap);
+
+        result.appendChild(details);
+      } else {
+        result.appendChild(node);
+        i++;
+      }
+    }
+
+    root.innerHTML = '';
+    root.appendChild(result);
   })().catch(err => {
     console.error(err);
     const el = document.getElementById('notes-content');
