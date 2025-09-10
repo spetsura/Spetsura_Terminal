@@ -1,4 +1,4 @@
-## Bohdan Kyianytsia
+Bohdan Kyianytsia
 
 System Administrator
 
