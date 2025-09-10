@@ -1,6 +1,6 @@
-Bohdan Kyianytsia
+**Bohdan Kyianytsia**
 
-System Administrator
+**System Administrator**
 
 ## Summary
 
@@ -47,7 +47,7 @@ System administrator with 5 years of hands-on experience supporting Linux/Window
 
 Before transitioning fully into IT, I worked in civil infrastructure, focusing on inspections and reporting for bridges and special structures. During this period, I regularly produced formal technical documentation, drawings, and structured reports based on engineering assessments. This early experience helped develop my attention to detail, accuracy, and ability to maintain long-term project documentation — skills I now apply directly in IT environments.
 
-### Education
+## Education
 
 **National Transport University, Kyiv**  
 
