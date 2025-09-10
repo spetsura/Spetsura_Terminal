@@ -996,14 +996,6 @@ html{scroll-behavior: smooth;}
     line-height: 1.4; }
   }
 
-  .resume-md h2 {
-    margin: 1.25rem 0 .75rem;
-    padding-bottom: .35rem;
-    font-weight: 700;
-    letter-spacing: .02em;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.31) !important;
-  }
-
   .resume-md h3 {
     margin: 1.1rem 0 .6rem;
     font-weight: 700;
