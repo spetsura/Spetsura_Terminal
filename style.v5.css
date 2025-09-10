@@ -995,4 +995,20 @@ html{scroll-behavior: smooth;}
     margin: 0.35rem 0;
     line-height: 1.4;
   }
-}
+
+  .resume-md h2 {
+    margin: 1.25rem 0 .75rem;
+    padding-bottom: .35rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+    border-bottom: 1px dashed rgb(0, 0, 0) !important;
+  }
+
+  .resume-md h3 {
+    margin: 1.1rem 0 .6rem;
+    font-weight: 700;
+  }
+
+  .resume-md p      { margin: .45rem 0; line-height: 1.6; }
+  .resume-md ul     { margin: .5rem 0 .7rem 1.2rem; list-style: disc; }
+  .resume-md li+li  { margin-top: .15rem; }
