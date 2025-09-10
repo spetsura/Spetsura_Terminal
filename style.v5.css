@@ -993,7 +993,7 @@ html{scroll-behavior: smooth;}
 
   .terminal-box.terminal-output p {
     margin: 0.35rem 0;
-    line-height: 1.4;
+    line-height: 1.4; }
   }
 
   .resume-md h2 {
