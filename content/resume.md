@@ -2,7 +2,7 @@
 
 System Administrator
 
-### Summary
+## Summary
 
 System administrator with 5 years of hands-on experience supporting Linux/Windows infrastructure, networks, and cloud platforms. Skilled in building stable, well-documented systems under pressure — from office relocations to blackouts during wartime. Combine automation, reliability, and attention to detail. Technical background in engineering helps me think in systems, not fragments.
 
