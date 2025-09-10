@@ -159,7 +159,7 @@
     #resume-content p { line-height: 1.6; }
     #resume-content ul { margin: .5rem 0 .6rem 1.2rem; }
 
-    .section:not(:last-child)::after {
+    #resume-content h2:not(:last-of-type)::after {
       content: '';
       display: block;
       width: 100%;
@@ -168,10 +168,6 @@
       border-bottom: 1px dashed var(--divider);
       margin: 2rem 0;
       opacity: 0.5;
-    }
-
-    .section:last-child::after {
-      display: none;
     }
   </style>
 </head>
