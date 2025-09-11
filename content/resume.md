@@ -64,12 +64,23 @@ Before transitioning fully into IT, I worked in civil infrastructure, focusing o
 
 **spetsura.com — Personal Self-Hosted Terminal-Style Website**  
 
-* Designed and built a terminal-inspired personal website from scratch using plain HTML/CSS/JS  
-* Self-managed on Oracle Cloud (Ubuntu VPS) with Nginx, secured via Cloudflare (DNS + SSL + firewall)  
-* Implemented scroll-triggered animations via IntersectionObserver, fully responsive layout  
-* Structured the entire project manually: versioning, cache busting, favicon optimization, minimal JS  
-* Maintained directly via Git and WebStorm, deployed over SFTP  
-* Page "/notes" documents the entire infrastructure and reasoning step-by-step (like a live README)  
+**Designed and built a terminal-inspired personal website from scratch using plain HTML/CSS/JS
+
+**Self-hosted on Oracle Cloud (Ubuntu VPS) with Nginx, secured via Cloudflare (DNS + SSL + firewall)
+
+**Implemented scroll-triggered animations via IntersectionObserver, fully responsive layout
+
+**Structured the entire project manually: versioning, cache busting, favicon optimization, minimal JS
+
+**Added Decap CMS for dynamic content editing (Markdown + Git backend)
+
+**Implemented automated CI/CD pipeline with GitHub Actions and a self-hosted runner (build, release rotation, atomic symlinks, nginx reload)
+
+**Configured SEO essentials: sitemap.xml, robots.txt, Open Graph for social previews
+
+**Set up automated backups with restic (20 rotating encrypted snapshots, off-site storage via SFTP)
+
+**Page /notes documents the entire infrastructure and reasoning step-by-step (like a live README)
 
 ## Contacts
 
