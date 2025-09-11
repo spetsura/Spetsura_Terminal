@@ -1,12 +1,12 @@
-## Bohdan Kyianytsia
+**Bohdan Kyianytsia**
 
-System Administrator
+**System Administrator**
 
-### Summary
+## Summary
 
 System administrator with 5 years of hands-on experience supporting Linux/Windows infrastructure, networks, and cloud platforms. Skilled in building stable, well-documented systems under pressure — from office relocations to blackouts during wartime. Combine automation, reliability, and attention to detail. Technical background in engineering helps me think in systems, not fragments.
 
-### Core Skills
+## Core Skills
 
 * **Operating Systems:** Ubuntu, Debian, CentOS, Windows Server, macOS  
 * **Networking:** MikroTik (MTCNA), Ubiquiti UniFi, VLANs, VPN, port forwarding, firewall configuration  
@@ -16,7 +16,7 @@ System administrator with 5 years of hands-on experience supporting Linux/Window
 * **Monitoring & Reliability:** service uptime tracking, diagnostics and recovery  
 * **Hardware:** PC/workstation/server assembly, diagnostics, modular repairs, component-level troubleshooting  
 
-### Experience
+## Experience
 
 **Natus Vincere (Sep 2020 – Present)**  
 
@@ -27,7 +27,7 @@ System administrator with 5 years of hands-on experience supporting Linux/Window
 * Configured and maintained cloud services (AWS, Cloudflare, Google Workspace)  
 * Integrated new hardware and software systems, managed equipment lifecycle from procurement to deployment  
 
-### Key Infrastructure Projects
+## Key Infrastructure Projects
 
 * Planned and delivered full IT support for 50+ internal bootcamps and 20+ live events — including temporary networking, systems prep, redundancy planning, and on-call response — all with near-zero tech downtime  
 * Implemented automated backup system for sensitive Windows Server data to SFTP storage (content under NDA)  
@@ -36,18 +36,18 @@ System administrator with 5 years of hands-on experience supporting Linux/Window
 * Participated in early-stage IT infrastructure planning for new office location  
 * Collaborated with contractors on indoor LED display system deployment (Novastar); learned control stack and took over post-install maintenance; automated remote control of display systems using Wake-on-LAN and Anydesk; configured content delivery and playback via SuperNova auto-launch  
 
-### Hardware & Systems Insight
+## Hardware & Systems Insight
 
 * Confident in component-level diagnostics, PC and workstation assembly, modular repair and maintenance  
 * Deep understanding of system stability, thermal considerations, and hardware-related bottlenecks  
 * Applied low-level hardware knowledge to design more reliable IT setups and predict failure points  
 * Comfortable troubleshooting hardware issues in real-time during production and live events  
 
-### Technical Background – Engineering Foundations
+## Technical Background – Engineering Foundations
 
 Before transitioning fully into IT, I worked in civil infrastructure, focusing on inspections and reporting for bridges and special structures. During this period, I regularly produced formal technical documentation, drawings, and structured reports based on engineering assessments. This early experience helped develop my attention to detail, accuracy, and ability to maintain long-term project documentation — skills I now apply directly in IT environments.
 
-### Education
+## Education
 
 **National Transport University, Kyiv**  
 
@@ -55,12 +55,12 @@ Before transitioning fully into IT, I worked in civil infrastructure, focusing o
 * Specialized in structural systems and technical documentation  
 * Bachelor's Degree in Construction Technology (2014–2018)  
 
-### Certifications
+## Certifications
 
 * MTCNA — MikroTik Certified Network Associate  
 * Pre-MTCNA — MikroTik UA  
 
-### Project
+## Project
 
 **spetsura.com — Personal Self-Hosted Terminal-Style Website**  
 
@@ -71,8 +71,8 @@ Before transitioning fully into IT, I worked in civil infrastructure, focusing o
 * Maintained directly via Git and WebStorm, deployed over SFTP  
 * Page "/notes" documents the entire infrastructure and reasoning step-by-step (like a live README)  
 
-### Contacts
+## Contacts
 
-* **Site:** [spetsura.com](https://spetsura.com)  
-* **GitHub:** [github.com/spetsura](https://github.com/spetsura)  
-* **Email:** admin@spetsura.com
+**Site:** [spetsura.com](https://spetsura.com)  
+**GitHub:** [github.com/spetsura](https://github.com/spetsura)  
+**Email:** admin@spetsura.com
