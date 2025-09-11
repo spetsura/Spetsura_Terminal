@@ -10,22 +10,27 @@ This is my personal portfolio site, styled as a terminal interface. It reflects 
 - Responsive design for mobile (burger menu included)
 - Light/dark theme support (/resume page)
 - Downloadable PDF resume via `/resume`
+- Dynamic content editing via Decap CMS (Markdown + Git backend)
+- Automated CI/CD pipeline with GitHub Actions (self-hosted runner, release rotation, nginx reload)
+- Basic SEO setup (sitemap.xml, robots.txt, Open Graph for social previews)
 
 ## Built with
 
 - Pure HTML, CSS, vanilla JS
-- WebStorm + SFTP for deployment
-- GitHub for version control
+- Decap CMS for content editing
+- GitHub for version control & CI/CD (self-hosted runner)
 - Oracle Cloud VPS + Nginx + systemd
-- Cloudflare for DNS and HTTPS
+- Cloudflare for DNS, SSL, and security (proxy, firewall)
+- Restic for automated off-site backups
 
 ## Why I built this
 
 To demonstrate not just "tech experience", but how I work:
 
 - Clean, minimal, framework-free architecture
-- No templates — built and deployed entirely by me
-- Full control over logic, layout, and hosting
+- From manual deploys → to fully automated GitHub Actions pipeline
+- Full control over logic, layout, hosting, backups, and monitoring
+- Realistic DevOps practice on a personal project
 
 ## Live version
 
