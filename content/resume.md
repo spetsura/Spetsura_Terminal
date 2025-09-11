@@ -73,6 +73,6 @@ Before transitioning fully into IT, I worked in civil infrastructure, focusing o
 
 ## Contacts
 
-* **Site:** [spetsura.com](https://spetsura.com)  
-* **GitHub:** [github.com/spetsura](https://github.com/spetsura)  
-* **Email:** admin@spetsura.com
+**Site:** [spetsura.com](https://spetsura.com)  
+**GitHub:** [github.com/spetsura](https://github.com/spetsura)  
+**Email:** admin@spetsura.com
