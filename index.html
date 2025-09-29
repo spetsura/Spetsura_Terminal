@@ -238,30 +238,28 @@
 
     content.style.display = "none";
 
-    // Turnstile
     const TURNSTILE_SITE_KEY = "0x4AAAAAAB381dhPzJcq7lAX";
     let tsScriptLoaded = false;
     let tsRendered = false;
     let tsToken = "";
 
-    const submitBtn = document.getElementById("contact-submit");
+    const submitBtn   = document.getElementById("contact-submit");
+    const contactForm = document.querySelector("#contact form");
+    const tsContainer = document.getElementById("turnstile-container");
+
     if (submitBtn) submitBtn.setAttribute("disabled", "disabled");
 
     function loadTurnstileScriptOnce(cb) {
-      if (tsScriptLoaded) { cb?.(); return; }
+      if (tsScriptLoaded) { cb && cb(); return; }
       const s = document.createElement("script");
       s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoaded&render=explicit";
-      s.async = true;
-      s.defer = true;
+      s.async = true; s.defer = true;
       window.onTurnstileLoaded = () => { tsScriptLoaded = true; cb && cb(); };
       document.head.appendChild(s);
     }
 
-    function renderTurnstileIfNeeded() {
-      if (tsRendered) return;
-      const target = document.querySelector("#turnstile-container");
-      if (!target || !window.turnstile) return;
-
+    function renderTurnstile() {
+      if (tsRendered || !window.turnstile || !tsContainer) return;
       window.turnstile.render("#turnstile-container", {
         sitekey: TURNSTILE_SITE_KEY,
         theme: "auto",
@@ -282,10 +280,12 @@
       tsRendered = true;
     }
 
-    function isInViewport(el) {
-      if (!el) return false;
-      const r = el.getBoundingClientRect();
-      return r.top < window.innerHeight && r.bottom >= 0;
+    function watchdogIfBlocked() {
+      setTimeout(() => {
+        if (!tsScriptLoaded && submitBtn) {
+          submitBtn.removeAttribute("disabled");
+        }
+      }, 6000);
     }
 
     const text = "Launching site...";
@@ -293,8 +293,7 @@
 
     function type() {
       if (i < text.length) {
-        typed.textContent += text[i];
-        i++;
+        typed.textContent += text[i++];
         setTimeout(type, 80);
       } else {
         done.style.display = "inline-block";
@@ -310,23 +309,20 @@
             document.querySelector(".mobile-header")?.classList.remove("hidden");
             document.querySelector(".mobile-menu")?.classList.remove("hidden");
             document.getElementById("site-logo")?.classList.add("visible");
-            document.querySelector('.resume-button')?.classList.add('visible');
+            document.querySelector(".resume-button")?.classList.add("visible");
 
-            loadTurnstileScriptOnce(() => {
-              const contact = document.getElementById("contact");
-              if (isInViewport(contact)) renderTurnstileIfNeeded();
-            });
+            loadTurnstileScriptOnce(renderTurnstile);
+            watchdogIfBlocked();
 
-            const observer = new IntersectionObserver((entries, observer) => {
+            const observer = new IntersectionObserver((entries, obs) => {
               entries.forEach(entry => {
                 if (entry.isIntersecting) {
                   entry.target.classList.remove("hidden");
                   entry.target.classList.add("visible");
-
                   if (entry.target.id === "contact") {
-                    loadTurnstileScriptOnce(renderTurnstileIfNeeded);
+                    loadTurnstileScriptOnce(renderTurnstile);
                   }
-                  observer.unobserve(entry.target);
+                  obs.unobserve(entry.target);
                 }
               });
             }, { threshold: 0.2 });
@@ -339,11 +335,10 @@
               document.getElementById("contact")
             ].forEach(t => t && observer.observe(t));
 
-            const contactForm = document.querySelector("#contact form");
             contactForm && contactForm.addEventListener("submit", (e) => {
-              if (!tsToken) {
+              if (!tsToken && tsScriptLoaded) {
                 e.preventDefault();
-                loadTurnstileScriptOnce(renderTurnstileIfNeeded);
+                try { window.turnstile.reset("#turnstile-container"); } catch(e){}
               }
             });
 
@@ -352,31 +347,22 @@
       }
     }
 
-    function isInViewport(el) {
-      if (!el) return false;
-      const r = el.getBoundingClientRect();
-      return r.top < window.innerHeight && r.bottom >= 0;
-    }
-
     type();
+
     let lastScroll = 0;
     const nav = document.querySelector(".top-nav");
-
     window.addEventListener("scroll", () => {
       const currentScroll = window.scrollY;
-
       if (currentScroll > lastScroll && currentScroll > 100) {
-        nav.classList.add("nav-hidden");
+        nav?.classList.add("nav-hidden");
       } else {
-        nav.classList.remove("nav-hidden");
+        nav?.classList.remove("nav-hidden");
       }
-
       lastScroll = currentScroll;
     });
 
     const buttons = document.querySelectorAll(".tab-btn");
     const contents = document.querySelectorAll(".tab-content");
-
     buttons.forEach(button => {
       button.addEventListener("click", () => {
         buttons.forEach(btn => btn.classList.remove("active"));
@@ -390,26 +376,26 @@
     const menu = document.querySelector(".mobile-menu");
     const closeBtn = document.querySelector(".menu-close");
 
-    burger.addEventListener('click', () => {
-      menu.classList.toggle('active');
-      burger.classList.toggle('open');
+    burger?.addEventListener("click", () => {
+      menu?.classList.toggle("active");
+      burger?.classList.toggle("open");
     });
 
-    closeBtn.addEventListener('click', () => {
-      menu.classList.remove('active');
-      burger.classList.remove('open');
+    closeBtn?.addEventListener("click", () => {
+      menu?.classList.remove("active");
+      burger?.classList.remove("open");
     });
 
-    document.querySelectorAll('.mobile-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        menu.classList.remove('active');
-        burger.classList.remove('open');
+    document.querySelectorAll(".mobile-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        menu?.classList.remove("active");
+        burger?.classList.remove("open");
       });
     });
 
-    document.getElementById('mobile-logo')?.addEventListener('click', () => {
-      menu.classList.remove('active');
-      burger.classList.remove('open');
+    document.getElementById("mobile-logo")?.addEventListener("click", () => {
+      menu?.classList.remove("active");
+      burger?.classList.remove("open");
     });
   });
 </script>
