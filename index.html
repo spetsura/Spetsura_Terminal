@@ -195,14 +195,27 @@
         <span class="prompt-green">Spetsura@terminal:~$</span>
         <span class="command-text">contact_me</span>
       </div>
+
       <form action="https://submit-form.com/OPFVN3V00" method="POST" class="contact-form">
         <input type="hidden" name="_redirect" value="https://spetsura.com/thanks" />
+
         <label for="name" class="green-text">[Enter your name]</label>
         <input type="text" id="name" name="name" required>
+
         <label for="email" class="green-text">[Enter your email address]</label>
         <input type="email" id="email" name="email" required>
+
         <label for="message" class="green-text">[Enter your message]</label>
         <textarea id="message" name="message" rows="5" required></textarea>
+
+        <!-- Turnstile widget -->
+        <div
+                class="cf-turnstile"
+                data-sitekey="0x4AAAAAAB381dhPzJcq7lAX"
+                data-theme="auto"
+                data-callback="onTurnstileOK">
+        </div>
+
         <button type="submit">Send a message</button>
       </form>
     </section>
@@ -336,6 +349,8 @@
       burger.classList.remove('open');
     });
   });
+
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer>
 </script>
 
 </body>
