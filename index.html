@@ -208,13 +208,7 @@
         <label for="message" class="green-text">[Enter your message]</label>
         <textarea id="message" name="message" rows="5" required></textarea>
 
-        <!-- Turnstile widget -->
-        <div
-                class="cf-turnstile"
-                data-sitekey="0x4AAAAAAB381dhPzJcq7lAX"
-                data-theme="auto"
-                data-callback="onTurnstileOK">
-        </div>
+        <div id="turnstile-container"></div>
 
         <button type="submit">Send a message</button>
       </form>
@@ -244,6 +238,36 @@
 
     content.style.display = "none";
 
+    // Turnstile helpers
+    const TURNSTILE_SITE_KEY = "0x4AAAAAAB381dhPzJcq7lAX";
+    let tsScriptLoaded = false;
+    let tsRendered = false;
+
+    function loadTurnstileScriptOnce(cb) {
+      if (tsScriptLoaded) { cb?.(); return; }
+      const s = document.createElement("script");
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoaded&render=explicit";
+      s.async = true;
+      s.defer = true;
+      window.onTurnstileLoaded = () => { tsScriptLoaded = true; cb?.(); };
+      document.head.appendChild(s);
+    }
+
+    function renderTurnstileIfNeeded() {
+      if (tsRendered) return;
+      const target = document.querySelector("#turnstile-container");
+      if (!target) return;
+      if (window.turnstile) {
+        window.turnstile.render("#turnstile-container", {
+          sitekey: TURNSTILE_SITE_KEY,
+          theme: "auto",
+          callback: function(token) {
+          }
+        });
+        tsRendered = true;
+      }
+    }
+
     const text = "Launching site...";
     let i = 0;
 
@@ -268,11 +292,22 @@
             document.getElementById("site-logo")?.classList.add("visible");
             document.querySelector('.resume-button')?.classList.add('visible');
 
+            loadTurnstileScriptOnce(() => {
+              if (isInViewport(document.getElementById("contact"))) {
+                renderTurnstileIfNeeded();
+              }
+            });
+
             const observer = new IntersectionObserver((entries, observer) => {
               entries.forEach(entry => {
                 if (entry.isIntersecting) {
                   entry.target.classList.remove("hidden");
                   entry.target.classList.add("visible");
+
+                  if (entry.target.id === "contact") {
+                    loadTurnstileScriptOnce(renderTurnstileIfNeeded);
+                  }
+
                   observer.unobserve(entry.target);
                 }
               });
@@ -293,6 +328,12 @@
           }, 600);
         }, 1000);
       }
+    }
+
+    function isInViewport(el) {
+      if (!el) return false;
+      const r = el.getBoundingClientRect();
+      return r.top < window.innerHeight && r.bottom >= 0;
     }
 
     type();
