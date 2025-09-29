@@ -210,7 +210,7 @@
 
         <div id="turnstile-container"></div>
 
-        <button type="submit">Send a message</button>
+        <button type="submit" id="contact-submit" disabled>Send a message</button>
       </form>
     </section>
   </div>
@@ -238,10 +238,14 @@
 
     content.style.display = "none";
 
-    // Turnstile helpers
+    // Turnstile
     const TURNSTILE_SITE_KEY = "0x4AAAAAAB381dhPzJcq7lAX";
     let tsScriptLoaded = false;
     let tsRendered = false;
+    let tsToken = "";
+
+    const submitBtn = document.getElementById("contact-submit");
+    if (submitBtn) submitBtn.setAttribute("disabled", "disabled");
 
     function loadTurnstileScriptOnce(cb) {
       if (tsScriptLoaded) { cb?.(); return; }
@@ -249,23 +253,39 @@
       s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoaded&render=explicit";
       s.async = true;
       s.defer = true;
-      window.onTurnstileLoaded = () => { tsScriptLoaded = true; cb?.(); };
+      window.onTurnstileLoaded = () => { tsScriptLoaded = true; cb && cb(); };
       document.head.appendChild(s);
     }
 
     function renderTurnstileIfNeeded() {
       if (tsRendered) return;
       const target = document.querySelector("#turnstile-container");
-      if (!target) return;
-      if (window.turnstile) {
-        window.turnstile.render("#turnstile-container", {
-          sitekey: TURNSTILE_SITE_KEY,
-          theme: "auto",
-          callback: function(token) {
-          }
-        });
-        tsRendered = true;
-      }
+      if (!target || !window.turnstile) return;
+
+      window.turnstile.render("#turnstile-container", {
+        sitekey: TURNSTILE_SITE_KEY,
+        theme: "auto",
+        callback(token) {
+          tsToken = token;
+          submitBtn && submitBtn.removeAttribute("disabled");
+        },
+        "expired-callback"() {
+          tsToken = "";
+          submitBtn && submitBtn.setAttribute("disabled","disabled");
+          try { window.turnstile.reset("#turnstile-container"); } catch(e){}
+        },
+        "error-callback"() {
+          tsToken = "";
+          submitBtn && submitBtn.setAttribute("disabled","disabled");
+        }
+      });
+      tsRendered = true;
+    }
+
+    function isInViewport(el) {
+      if (!el) return false;
+      const r = el.getBoundingClientRect();
+      return r.top < window.innerHeight && r.bottom >= 0;
     }
 
     const text = "Launching site...";
@@ -293,9 +313,8 @@
             document.querySelector('.resume-button')?.classList.add('visible');
 
             loadTurnstileScriptOnce(() => {
-              if (isInViewport(document.getElementById("contact"))) {
-                renderTurnstileIfNeeded();
-              }
+              const contact = document.getElementById("contact");
+              if (isInViewport(contact)) renderTurnstileIfNeeded();
             });
 
             const observer = new IntersectionObserver((entries, observer) => {
@@ -307,22 +326,25 @@
                   if (entry.target.id === "contact") {
                     loadTurnstileScriptOnce(renderTurnstileIfNeeded);
                   }
-
                   observer.unobserve(entry.target);
                 }
               });
             }, { threshold: 0.2 });
 
-            const targets = [
+            [
               document.getElementById("about-me"),
               document.getElementById("work-experience"),
               document.getElementById("certifications"),
               document.getElementById("project-notes"),
               document.getElementById("contact")
-            ];
+            ].forEach(t => t && observer.observe(t));
 
-            targets.forEach(target => {
-              if (target) observer.observe(target);
+            const contactForm = document.querySelector("#contact form");
+            contactForm && contactForm.addEventListener("submit", (e) => {
+              if (!tsToken) {
+                e.preventDefault();
+                loadTurnstileScriptOnce(renderTurnstileIfNeeded);
+              }
             });
 
           }, 600);
