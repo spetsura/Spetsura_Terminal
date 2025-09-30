@@ -1005,5 +1005,19 @@ html{scroll-behavior: smooth;}
   .resume-md ul     { margin: .5rem 0 .7rem 1.2rem; list-style: disc; }
   .resume-md li+li  { margin-top: .15rem; }
 
-#turnstile-container { min-height: 60px; }
-.cf-challenge, .cf-turnstile { transform: scale(0.95); transform-origin: left top; }
+#turnstile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+  padding: 8px;
+  border: 2px solid #00ff00;
+  border-radius: 6px;
+  box-shadow: 0 0 10px #00ff00;
+  background: black;
+}
+
+#turnstile-container iframe {
+  transform: scale(0.95);
+  transform-origin: center;
+}
