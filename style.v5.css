@@ -1014,16 +1014,6 @@ html{scroll-behavior: smooth;}
   position: relative;
 }
 
-#turnstile-container::before{
-  content:"";
-  position:absolute;
-  top:-10px;
-  left:0; right:0;
-  height:1px;
-  background: linear-gradient(90deg, transparent, #00ff26 35%, transparent 65%);
-  opacity: .35;
-}
-
 #turnstile-container iframe {
   transform: scale(0.95);
   transform-origin: center;
