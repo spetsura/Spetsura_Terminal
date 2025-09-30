@@ -1009,12 +1009,19 @@ html{scroll-behavior: smooth;}
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 15px 0;
-  padding: 8px;
-  border: 2px solid #00ff00;
-  border-radius: 6px;
-  box-shadow: 0 0 10px #00ff00;
-  background: black;
+  padding: 6px 0;
+  margin-top: 6px;
+  position: relative;
+}
+
+#turnstile-container::before{
+  content:"";
+  position:absolute;
+  top:-10px;
+  left:0; right:0;
+  height:1px;
+  background: linear-gradient(90deg, transparent, #00ff26 35%, transparent 65%);
+  opacity: .35;
 }
 
 #turnstile-container iframe {
